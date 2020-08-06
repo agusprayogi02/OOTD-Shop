@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('JK', ['L', 'P']);
             $table->string('foto', 100);
             $table->string('alamat', 255);
+            $table->enum('status', ['admin', 'user', 'member', 'ojol']);
             $table->rememberToken();
             $table->timestamps();
         });
