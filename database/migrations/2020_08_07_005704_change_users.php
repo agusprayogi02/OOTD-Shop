@@ -14,7 +14,12 @@ class ChangeUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->bigInteger('uang')->after('password')->default(0);
+            $table->enum('JK', ['L', 'P'])->after('uang');
+            $table->string('alamat')->after('JK');
+            $table->date('birthdate')->after('alamat');
+            $table->string('foto')->after('birthdate')->nullable();
+            $table->enum('role', ['admin', 'member', 'user'])->after('foto')->default('user');
         });
     }
 
