@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUangTable extends Migration
+class ChangeUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateUangTable extends Migration
      */
     public function up()
     {
-        Schema::create('uang', function (Blueprint $table) {
-            $table->id('kd_uang');
-            $table->integer('uang');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
         });
     }
 
@@ -27,6 +25,8 @@ class CreateUangTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uang');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }
