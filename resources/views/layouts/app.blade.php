@@ -7,9 +7,13 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name') }}</title>
+    <title>{{ $title }}</title>
 
-    <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
+    <!-- Icons -->
+    <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
+    <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('media/favicons/favicon-192x192.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('app/css/open-iconic-bootstrap.min.css')}}">
@@ -68,10 +72,11 @@
                     @if (auth()->user()->role == 'admin')
                     <li class="nav-item"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
                     @else
+                    @if (Auth::user()->role == 'member')
                     <li class="nav-item"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
                     @endif
-                    @else
                     <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                    @endif
                     @endif
                     {{-- @can('isAdmin')
                     <li class="nav-item active"><a href="{{ route('admin.home') }}" class="nav-link">Home</a></li>

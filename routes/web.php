@@ -19,3 +19,10 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('is_admin');
 Route::get('/member/home', 'MemberController@index')->name('member.home')->middleware('can:isMember');
+
+Route::view('/pages/slick', 'pages.slick');
+Route::view('/pages/datatables', 'pages.datatables');
+Route::view('/pages/blank', 'pages.blank');
+Route::match(['get', 'post'], '/dashboard', function () {
+    return view('dashboard');
+});

@@ -13,6 +13,9 @@ class MemberController extends Controller
 
     public function index()
     {
-        return view('member.home');
+        $data = [
+            'title' => 'Member - Home'
+        ];
+        return view('member.home', $data);
     }
 }
