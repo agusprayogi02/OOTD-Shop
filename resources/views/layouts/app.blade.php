@@ -2,9 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>{{ config('app.name') }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name') }}</title>
+
     <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
@@ -35,13 +39,12 @@
             <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
                 <div class="col-lg-12 d-block">
                     <div class="row d-flex">
-                        <div class="col-md pr-4 d-flex topper align-items-center">
+                        <div class="col-sm-6 pr-4 d-flex topper align-items-center">
                             <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
                                     class="icon-phone2"></span></div>
                             <span class="text">+62 881 7935 154</span>
                         </div>
-                        <div class="col-md pr-4 d-flex topper align-items-center"></div>
-                        <div class="col-md pr-4 d-flex topper align-items-center">
+                        <div class="col-sm-6 pr-4 d-flex topper align-items-center">
                             <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
                                     class="icon-paper-plane"></span></div>
                             <span class="text">agus21apy@gmail.com</span>
@@ -61,7 +64,22 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+                    @if (isset(Auth::user()->role))
+                    @if (auth()->user()->role == 'admin')
+                    <li class="nav-item"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
+                    @else
+                    <li class="nav-item"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
+                    @endif
+                    @else
+                    <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                    @endif
+                    {{-- @can('isAdmin')
+                    <li class="nav-item active"><a href="{{ route('admin.home') }}" class="nav-link">Home</a></li>
+                    @endcan
+                    @can('isMember')
+                    <li class="nav-item active"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
+                    @endcan --}}
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Catalog</a>

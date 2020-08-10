@@ -116,7 +116,7 @@
                             <div class="col-md-6">
                                 <select name="role" class="form-control" id="role">
                                     <option value="user">User</option>
-                                    <option value="member">Membar</option>
+                                    <option value="member">Member</option>
                                     <option value="admin">Admin</option>
                                 </select>
                             </div>
