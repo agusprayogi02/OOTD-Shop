@@ -1,10 +1,46 @@
 @extends('layouts.auth')
 
 @section('content')
+
+@section('css_before')
+<!-- Stylesheets -->
+<!-- Page JS Plugins CSS -->
+<link rel="stylesheet" href="js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+<link rel="stylesheet" href="js/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="js/plugins/jquery-tags-input/jquery.tagsinput.min.css">
+<link rel="stylesheet" href="js/plugins/jquery-auto-complete/jquery.auto-complete.min.css">
+<link rel="stylesheet" href="js/plugins/ion-rangeslider/css/ion.rangeSlider.css">
+<link rel="stylesheet" href="js/plugins/dropzonejs/dist/dropzone.css">
+<link rel="stylesheet" href="js/plugins/flatpickr/flatpickr.min.css">
+@endsection
+
+@section('js_after')
+<!-- Page JS Plugins -->
+<script src="js/plugins/pwstrength-bootstrap/pwstrength-bootstrap.min.js"></script>
+<script src="js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+<script src="js/plugins/select2/js/select2.full.min.js"></script>
+<script src="js/plugins/jquery-tags-input/jquery.tagsinput.min.js"></script>
+<script src="js/plugins/jquery-auto-complete/jquery.auto-complete.min.js"></script>
+<script src="js/plugins/masked-inputs/jquery.maskedinput.min.js"></script>
+<script src="js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+<script src="js/plugins/dropzonejs/dropzone.min.js"></script>
+<script src="js/plugins/flatpickr/flatpickr.min.js"></script>
+
+<!-- Page JS Code -->
+<script src="js/pages/be_forms_plugins.min.js"></script>
+
+<!-- Page JS Helpers (Flatpickr + BS Datepicker + BS Colorpicker + BS Maxlength + Select2 + Masked Input + Range Sliders + Tags Inputs plugins) -->
+<script>
+    jQuery(function(){ Codebase.helpers(['flatpickr', 'datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider', 'tags-inputs']); });
+</script>
+@endsection
 <!-- Main Container -->
 <main id="main-container">
     <!-- Page Content -->
-    <div class="bg-body-dark bg-pattern" style="background-image: url('assets/media/various/bg-pattern-inverse.png');">
+    <div class="bg-body-dark bg-pattern" style="background-image: url('media/various/bg-pattern-inverse.png');">
         <div class="row mx-0 justify-content-center">
             <div class="hero-static col-lg-6 col-xl-6">
                 <div class="content content-full overflow-hidden">
@@ -34,7 +70,8 @@
                                     <div class="col-12">
                                         <label for="name">{{ __('Name') }}</label>
                                         <input id="name" type="text"
-                                            class="form-control @error('name') is-invalid @enderror" name="name"
+                                            class="js-maxlength form-control @error('name') is-invalid @enderror"
+                                            name="name" maxlength="255" data-always-show="true" data-placement="right"
                                             value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                         @error('name')
@@ -61,10 +98,11 @@
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <label for="signup-password">Password</label>
-                                        <input id="signup-password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="new-password">
-
+                                        <input type="password"
+                                            class="js-pw-strength1 form-control @error('password') is-invalid @enderror"
+                                            id="signup-password" name="password" required autocomplete="new-password">
+                                        <div class="js-pw-strength1-progress pw-strength-progress mt-5"></div>
+                                        <p class="js-pw-strength1-feedback form-text"></p>
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -82,7 +120,7 @@
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <label for="jenis">{{ __('Jenis Kelamin') }}</label>
-                                        <select class="form-control" name="jk" id="jenis">
+                                        <select class="js-select2 form-control" name="jk" id="jenis">
                                             <option value="L">Laki-Laki</option>
                                             <option value="P">Perempuan</option>
                                         </select>
@@ -103,8 +141,10 @@
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <label for="birthdate">Tanggal Lahir</label>
-                                        <input type="date" class="form-control @error('birthdate') is-invalid @enderror"
-                                            name="birthdate" id="birthdate" />
+                                        <input type="text"
+                                            class="js-flatpickr form-control bg-white @error('birthdate') is-invalid @enderror"
+                                            id="birthdate" name="birthdate" data-alt-input="true"
+                                            data-date-format="Y-m-d" data-alt-format="F j, Y">
                                         @error('birthdate')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -115,7 +155,7 @@
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <label for="role">Daftar Sebagai</label>
-                                        <select name="role" class="form-control" id="role">
+                                        <select name="role" class="js-select2 form-control" id="role">
                                             <option value="user">User</option>
                                             <option value="member">Member</option>
                                             <option value="admin">Admin</option>
