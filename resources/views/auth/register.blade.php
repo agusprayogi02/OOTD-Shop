@@ -10,7 +10,7 @@
                 <div class="content content-full overflow-hidden">
                     <!-- Header -->
                     <div class="py-30 text-center">
-                        <a class="link-effect font-w700" href="index.html">
+                        <a class="link-effect font-w700" href="{{ route('home')}}">
                             <i class="si si-fire"></i>
                             <span class="font-size-xl text-primary-dark">OOTD-</span><span
                                 class="font-size-xl">SHOP</span>
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-12">
-                                        <label for="role">Role</label>
+                                        <label for="role">Daftar Sebagai</label>
                                         <select name="role" class="form-control" id="role">
                                             <option value="user">User</option>
                                             <option value="member">Member</option>

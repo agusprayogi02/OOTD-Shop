@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Admin - Home'
+            'title' => "Admin - Home"
         ];
         return view('admin.home', $data);
     }

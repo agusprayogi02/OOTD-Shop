@@ -75,8 +75,12 @@
                     @if (Auth::user()->role == 'member')
                     <li class="nav-item"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
                     @endif
-                    <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item {{ request()->is('user/index')? 'active' : ''}}"><a href="{{ route('home') }}"
+                            class="nav-link">Home</a></li>
                     @endif
+                    @else
+                    <li class="nav-item {{ request()->is('user/index')? 'active' : ''}}"><a href="{{ route('home') }}"
+                            class="nav-link">Home</a></li>
                     @endif
                     {{-- @can('isAdmin')
                     <li class="nav-item active"><a href="{{ route('admin.home') }}" class="nav-link">Home</a></li>
