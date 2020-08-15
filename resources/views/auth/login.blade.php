@@ -31,6 +31,15 @@
                                 <h3 class="block-title">Please Sign In</h3>
                             </div>
                             <div class="block-content">
+                                @if (session('error'))
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    <h3 class="alert-heading font-size-h4 font-w400">Error</h3>
+                                    <p class="mb-0">{{ session('error') }}</p>
+                                </div>
+                                @endif
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <label for="login-username">{{ __('E-Mail Address') }}</label>

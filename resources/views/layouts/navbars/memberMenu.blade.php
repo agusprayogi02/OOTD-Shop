@@ -10,7 +10,7 @@
             <span class="sidebar-mini-visible">CD</span><span class="sidebar-mini-hidden">CRUD</span>
         </li>
         <li>
-            <a href="{{ route('member.add') }}" class="{{ request()->is('member/tambah')?'active':'' }}">
+            <a href="{{ route('member.addBrg') }}" class="{{ request()->is('member/tambah')?'active':'' }}">
                 <i class="si si-globe"></i><span class="sidebar-mini-hide">Tambah Barang</span>
             </a>
         </li>

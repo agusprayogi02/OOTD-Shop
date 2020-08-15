@@ -19,16 +19,26 @@
 <!-- Page Content -->
 <div class="content">
     <!-- Dynamic Table Full -->
+    <h2 class="content-heading">List Barang</h2>
     <div class="block">
         <div class="block-header block-header-default">
             <div style="width: 100%" class="row">
                 <h3 class="block-title col-sm-6">List Barang</h3>
                 <div class="col-sm-6 text-right">
-                    <a href="{{ route('member.add') }}" class="btn btn-sm btn-alt-success">Tambah Barang</a>
+                    <a href="{{ route('member.addBrg') }}" class="btn btn-sm btn-alt-success">Tambah Barang</a>
                 </div>
             </div>
         </div>
         <div class="block-content block-content-full">
+            @if (session('pesan'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h3 class="alert-heading font-size-h4 font-w400">Success</h3>
+                <p class="mb-0">{{ session('pesan') }}</p>
+            </div>
+            @endif
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
@@ -49,8 +59,8 @@
                     @foreach ($rows as $row)
                     <tr>
                         <th class="text-center">{{$id++}}</th>
-                        <td><img class="animated wobble img-thumbnail" src="{{ asset('app/images/').'/'.$row->foto}}"
-                                alt=""></td>
+                        <td><img class="animated wobble img-thumbnail"
+                                src="{{ asset('app/images/barang').'/'.$row->foto}}" alt=""></td>
                         <td class="font-w600">{{ $row->nama }}</td>
                         <td style="width: 80%">{{ 'Rp.'.$row->harga }}</td>
                         <td class="d-none d-sm-table-cell" style="width: 80px;">{{ $row->stok }}</td>

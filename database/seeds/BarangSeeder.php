@@ -14,7 +14,7 @@ class BarangSeeder extends Seeder
     public function run()
     {
         DB::table('barang')->insert([
-            'kd_brg' => 'BRG' . random_int(0, 99999),
+            'kd_brg' => "KD" . time() . "BRG" . rand(0, 999),
             'id' => '1',
             'kd_ktgr' => '1',
             'nama' => 'Sepatu Kain',
@@ -25,7 +25,7 @@ class BarangSeeder extends Seeder
             'created_at' => now()
         ]);
         DB::table('barang')->insert([
-            'kd_brg' => 'BRG' . random_int(0, 99999),
+            'kd_brg' => "KD" . time() . "BRG" . rand(0, 999),
             'id' => '1',
             'kd_ktgr' => '1',
             'nama' => 'Sepatu Kain Coklat',
