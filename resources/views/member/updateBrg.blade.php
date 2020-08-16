@@ -1,14 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="content">
-    <h2 class="content-heading">Tambah Barang</h2>
+    <h2 class="content-heading">Update Barang</h2>
     <div class="row">
         <div class="col-md-7">
             <!-- Horizontal Form -->
             <div class="block">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Tambah Barang</h3>
+                    <h3 class="block-title">Update Barang</h3>
                 </div>
                 <div class="block-content">
                     @if (session('error'))
@@ -20,13 +21,14 @@
                         <p class="mb-0">{{ session('error') }}</p>
                     </div>
                     @endif
-                    <form action="{{ route('member.storeBrg') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('member.updateBrg', ['id'=>$barang->kd_brg]) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label" for="nama">Nama Barang</label>
                             <div class="col-lg-8">
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
-                                    name="nama" value="{{ old('nama') }}" placeholder="Enter Nama..">
+                                    name="nama" value="{{ $barang->nama }}" placeholder="Enter Nama..">
                                 @error('nama')
                                 <div class="invalid-feedback">
                                     <p>{{ $message }}</p>
@@ -42,7 +44,8 @@
                                         <span class="input-group-text">Rp.</span>
                                     </div>
                                     <input type="number" class="form-control @error('harga') is-invalid @enderror"
-                                        id="harga" name="harga" value="{{ old('harga') }}" placeholder="Enter Harga..">
+                                        id="harga" name="harga" value="{{ $barang->harga }}"
+                                        placeholder="Enter Harga..">
                                     @error('harga')
                                     <div class="invalid-feedback">
                                         <p>{{ $message }}</p>
@@ -55,7 +58,7 @@
                             <label class="col-lg-3 col-form-label " for="stok">Jumlah Stok</label>
                             <div class="col-lg-8">
                                 <input type="number" class="form-control @error('stok') is-invalid @enderror" id="stok"
-                                    name="stok" value="{{ old('stok') }}" placeholder="Enter Stok..">
+                                    name="stok" value="{{ $barang->stok }}" placeholder="Enter Stok..">
                                 @error('stok')
                                 <div class="invalid-feedback">
                                     <p>{{ $message }}</p>
@@ -67,7 +70,7 @@
                             <label class="col-lg-3 col-form-label " for="diskon">Diskon (Opsional)</label>
                             <div class="col-lg-8">
                                 <div class="input-group">
-                                    <input type="number" name="diskon" id="diskon" value="0"
+                                    <input type="number" name="diskon" id="diskon" value="{{ $barang->diskon }}"
                                         class="form-control @error('diskon') is-invalid @enderror"
                                         placeholder="Enter Diskon">
                                     <div class="input-group-append"><span class="input-group-text">%</span></div>
@@ -80,11 +83,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label " for="foto">Gambar Barang</label>
+                            <div class="col-lg-3">
+                                <img src="{{ asset('app/images/barang/').'/'.$barang->foto }}"
+                                    class="img-thumbnail mb-2" alt="">
+                            </div>
                             <div class="col-lg-8">
+                                <label class="col-form-label " for="foto">Ganti Gambar</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('foto') is-invalid @enderror"
-                                        id="foto" name="foto" placeholder="Enter Gambar.." value="{{ old('foto') }}"
+                                        id="foto" name="foto" placeholder="Enter Gambar.." value="{{ $barang->foto }}"
                                         data-toggle="custom-file-input">
                                     <label for="foto" class="custom-file-label">Choose File</label>
                                     @error('foto')
@@ -101,7 +108,16 @@
                                 <div class="input-group">
                                     <select name="kategori" id="kategori" class="form-control">
                                         @foreach ($kategori as $item)
-                                        <option value="{{ $item->kd_ktgr }}">{{ $item->namaK}}</option>
+                                        @if ($item->kd_ktgr == $barang->kd_ktgr)
+                                        @php
+                                        $select = 'selected';
+                                        @endphp
+                                        @else
+                                        @php
+                                        $select = '';
+                                        @endphp
+                                        @endif
+                                        <option {{ $select }} value="{{ $item->kd_ktgr }}">{{ $item->namaK}}</option>
                                         @endforeach
                                     </select>
                                     @error('kategori')
@@ -114,7 +130,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-9 ml-auto">
-                                <button type="submit" class="btn btn-alt-primary">Simpan</button>
+                                <button type="submit" class="btn btn-alt-primary">Update Barang</button>
                             </div>
                         </div>
                     </form>
@@ -124,4 +140,5 @@
         </div>
     </div>
 </div>
+
 @endsection

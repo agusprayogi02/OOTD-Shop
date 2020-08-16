@@ -39,6 +39,15 @@
                 <p class="mb-0">{{ session('pesan') }}</p>
             </div>
             @endif
+            @if (session('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h3 class="alert-heading font-size-h4 font-w400">Error</h3>
+                <p class="mb-0">{{ session('error') }}</p>
+            </div>
+            @endif
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
@@ -67,10 +76,12 @@
                         <td class="d-none d-sm-table-cell" style="width: 80px;">{{ $row->diskon.'%' }}</td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit"><i
-                                        class="fa fa-pencil"></i></a>
-                                <a href="#" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete"><i
-                                        class="fa fa-times"></i></a>
+                                <a href="{{ route('member.editBrg', ['id'=>$row->kd_brg]) }}"
+                                    class="btn btn-sm btn-secondary" style="width: 50px; color: orange"
+                                    data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ route('member.deleteBrg', ['id'=>$row->kd_brg]) }}"
+                                    class="btn btn-sm btn-secondary" style="width: 50px; color: red"
+                                    data-toggle="tooltip" title="Delete"><i class="fa fa-times"></i></a>
                             </div>
                         </td>
                     </tr>

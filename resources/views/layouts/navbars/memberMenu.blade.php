@@ -7,11 +7,14 @@
             </a>
         </li>
         <li class="nav-main-heading">
-            <span class="sidebar-mini-visible">CD</span><span class="sidebar-mini-hidden">CRUD</span>
+            <span class="sidebar-mini-visible">BR</span><span class="sidebar-mini-hidden">Barang</span>
         </li>
         <li>
-            <a href="{{ route('member.addBrg') }}" class="{{ request()->is('member/tambah')?'active':'' }}">
-                <i class="si si-globe"></i><span class="sidebar-mini-hide">Tambah Barang</span>
+            <a href="{{ route('member.addBrg') }}" class="{{ request()->is('member/brg/tambah')?'active':'' }}">
+                <i class="si si-plus"></i><span class="sidebar-mini-hide">Tambah Barang</span>
+            </a>
+            <a href="{{ route('member.add_ktgr') }}" class="{{ request()->is('member/ktgr/tambah')?'active':'' }}">
+                <i class="si si-chart"></i><span class="sidebar-mini-hide">Tambah Kategori</span>
             </a>
         </li>
     </ul>

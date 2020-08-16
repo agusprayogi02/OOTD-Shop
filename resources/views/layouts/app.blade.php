@@ -157,9 +157,12 @@
                         <h2 class="ftco-heading-2">OOTD-Shop</h2>
                         <p>Far far away, behind the word mountains, far from the countries Indonesia.</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                            <li class="ftco-animate"><a href="https://twitter.com/Agus21apy"><span
+                                        class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.facebook.com/yogi.apy.96/"><span
+                                        class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="https://github.com/agusprayogi02"><span
+                                        class="icon-github"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -214,7 +217,7 @@
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved @agus prayogi
+                        </script> All rights reserved <a href="https://github.com/agusprayogi02">@agus prayogi</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
