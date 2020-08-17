@@ -23,7 +23,8 @@
                     <form action="{{ route('member.storeBrg') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label" for="nama">Nama Barang</label>
+                            <label class="col-lg-3 col-form-label" for="nama">Nama Barang <b
+                                    style="color: red">*</b></label>
                             <div class="col-lg-8">
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
                                     name="nama" value="{{ old('nama') }}" placeholder="Enter Nama..">
@@ -35,7 +36,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label " for="harga">Harga Barang</label>
+                            <label class="col-lg-3 col-form-label " for="harga">Harga Barang <b
+                                    style="color: red">*</b></label>
                             <div class="col-lg-8">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -52,7 +54,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label " for="stok">Jumlah Stok</label>
+                            <label class="col-lg-3 col-form-label " for="stok">Jumlah Stok <b
+                                    style="color: red">*</b></label>
                             <div class="col-lg-8">
                                 <input type="number" class="form-control @error('stok') is-invalid @enderror" id="stok"
                                     name="stok" value="{{ old('stok') }}" placeholder="Enter Stok..">
@@ -80,7 +83,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label " for="foto">Gambar Barang</label>
+                            <label class="col-lg-3 col-form-label " for="foto">Gambar Barang <b
+                                    style="color: red">*</b></label>
                             <div class="col-lg-8">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('foto') is-invalid @enderror"
@@ -96,7 +100,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label" for="kategori">Kategori</label>
+                            <label class="col-lg-3 col-form-label" for="kategori">Kategori <b
+                                    style="color: red">*</b></label>
                             <div class="col-lg-8">
                                 <div class="input-group">
                                     <select name="kategori" id="kategori" class="form-control">

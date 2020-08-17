@@ -13,8 +13,11 @@
             <a href="{{ route('member.addBrg') }}" class="{{ request()->is('member/brg/tambah')?'active':'' }}">
                 <i class="si si-plus"></i><span class="sidebar-mini-hide">Tambah Barang</span>
             </a>
+            <a href="{{ route('member.list_ktgr') }}" class="{{ request()->is('member/ktgr/list')?'active':'' }}">
+                <i class="si si-chart"></i><span class="sidebar-mini-hide">List Kategori</span>
+            </a>
             <a href="{{ route('member.add_ktgr') }}" class="{{ request()->is('member/ktgr/tambah')?'active':'' }}">
-                <i class="si si-chart"></i><span class="sidebar-mini-hide">Tambah Kategori</span>
+                <i class="fa fa-plus-square"></i><span class="sidebar-mini-hide">Tambah Kategori</span>
             </a>
         </li>
     </ul>

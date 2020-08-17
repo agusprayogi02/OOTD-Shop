@@ -147,4 +147,31 @@ class MemberController extends Controller
         ];
         return view('member.tambah_kategori', $data);
     }
+
+    public function storeKtgr(Request $req)
+    {
+        $req->validate([
+            'namaK' => 'required|string'
+        ]);
+
+        $add = DB::table('kategori')->insert([
+            'pembuat' => Auth::user()->name,
+            'namaK' => $req->namaK,
+            'created_at' => now()
+        ]);
+        if ($add) {
+            return redirect()->route('member.list_ktgr')->with('pesan', 'Berhasil Menambahkan Kategori!!');
+        } else {
+            return redirect()->route('member.add_ktgr')->with('error', "Gagal Menambahkan Kategori!!");
+        }
+    }
+
+    public function list_ktgr()
+    {
+        $data = [
+            'title' => 'List Kategori',
+            'lists' => DB::table('kategori')->get()
+        ];
+        return view('member.list_ktgr', $data);
+    }
 }
