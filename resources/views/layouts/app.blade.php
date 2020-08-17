@@ -98,7 +98,8 @@
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             <a class="dropdown-item {{ request()->is('catalog/shop')? 'active':'' }}"
                                 href="{{ route('shop') }}">Shop</a>
-                            <a class="dropdown-item" href="#">Cart</a>
+                            <a class="dropdown-item {{ request()->is('catalog/basket')? 'active':'' }}"
+                                href="{{ route('user.cart') }}">Basket</a>
                             <a class="dropdown-item" href="#">History</a>
                         </div>
                     </li>
