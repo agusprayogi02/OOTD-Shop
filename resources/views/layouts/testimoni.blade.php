@@ -26,7 +26,7 @@
                             <span class="flaticon-payment-security"></span>
                         </div>
                         <div class="text">
-                            <h3>All Day Support</h3>
+                            <h3>Secure Payments</h3>
                             <p class="mb-0">Separated they live in. A small river named Duden flows</p>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                             <span class="flaticon-customer-service"></span>
                         </div>
                         <div class="text">
-                            <h3>All Day Support</h3>
+                            <h3>Fast Response</h3>
                             <p class="mb-0">Separated they live in. A small river named Duden flows</p>
                         </div>
                     </div>

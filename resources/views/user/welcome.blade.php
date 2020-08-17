@@ -67,14 +67,14 @@
             @foreach ($barang as $item)
             <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
                 <div class="product d-flex flex-column">
-                    <a href="#" class="img-prod"><img class="img-fluid" src="app/images/barang/{{ $item->foto }}"
-                            alt="Colorlib Template">
+                    <a href="#" class="img-prod">
+                        <img class="img-fluid" src="/app/images/barang/{{ $item->foto }}" alt="{{ $item->nama }}">
                         @if ($item->diskon > 0)
                         <span class="status">{{ $item->diskon }}% Off</span>
                         @endif
                         <div class="overlay"></div>
                     </a>
-                    <div class="text py-3 pb-4 px-3">
+                    <div class="text py-3 pb-4 px-3 mt-auto">
                         <div class="d-flex">
                             <div class="cat">
                                 <span>LIFESTYLE</span>

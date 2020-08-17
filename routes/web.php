@@ -19,6 +19,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home/contact', 'HomeController@contact')->name('contact');
 Route::get('/home/about', 'HomeController@about')->name('about');
+Route::get('/catalog/shop', 'HomeController@shop')->name('shop');
+Route::get('/catalog/shop/{id}', 'HomeController@shopId')->name('shop.get');
 
 // admin
 Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('is_admin');

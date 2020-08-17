@@ -92,18 +92,20 @@
                     <li class="nav-item active"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
                     @endcan --}}
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown {{ request()->is('catalog/*')? 'active':'' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Catalog</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="#">Shop</a>
-                            <a class="dropdown-item" href="#">Single Product</a>
+                            <a class="dropdown-item {{ request()->is('catalog/shop')? 'active':'' }}"
+                                href="{{ route('shop') }}">Shop</a>
                             <a class="dropdown-item" href="#">Cart</a>
-                            <a class="dropdown-item" href="#">Checkout</a>
+                            <a class="dropdown-item" href="#">History</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+                    <li class="nav-item {{ request()->is('home/about')? 'active':'' }}"><a href="{{ route('about') }}"
+                            class="nav-link">About</a></li>
+                    <li class="nav-item {{ request()->is('home/contact')? 'active':'' }}"><a
+                            href="{{ route('contact') }}" class="nav-link">Contact</a></li>
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

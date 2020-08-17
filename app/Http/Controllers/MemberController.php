@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Barang;
+use App\Kategori;
 use Illuminate\Support\Facades\Auth;
 use ImageResize;
 
@@ -30,7 +31,7 @@ class MemberController extends Controller
     {
         $data = [
             'title' => 'Member - Tambah Barang',
-            'kategori' => DB::table('kategori')->get()
+            'kategori' => Kategori::all()
         ];
         return view('member.tambahBrg', $data);
     }
@@ -154,7 +155,7 @@ class MemberController extends Controller
             'namaK' => 'required|string'
         ]);
 
-        $add = DB::table('kategori')->insert([
+        $add = Kategori::insert([
             'pembuat' => Auth::user()->name,
             'namaK' => $req->namaK,
             'created_at' => now()
@@ -170,7 +171,7 @@ class MemberController extends Controller
     {
         $data = [
             'title' => 'List Kategori',
-            'lists' => DB::table('kategori')->get()
+            'lists' => Kategori::all()
         ];
         return view('member.list_ktgr', $data);
     }
