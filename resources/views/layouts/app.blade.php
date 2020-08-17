@@ -203,7 +203,7 @@
                                         Timur , Indonesia</span></li>
                                 <li><a href="#"><span class="icon icon-phone"></span><span class="text">+62 881 7935
                                             154</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span
+                                <li><a href="mailto:agus21apy@gmail.com"><span class="icon icon-envelope"></span><span
                                             class="text">agus21apy@gmail.com</span></a></li>
                             </ul>
                         </div>

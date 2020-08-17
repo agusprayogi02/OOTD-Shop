@@ -18,7 +18,7 @@ class MemberController extends Controller
 
     public function index()
     {
-        $rows = Barang::all();
+        $rows = Barang::where('id', Auth::user()->id)->get();
         $data = [
             'title' => 'Member - Home',
             'rows' => $rows
