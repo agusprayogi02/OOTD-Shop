@@ -19,6 +19,56 @@
         <div class="row">
             <div class="col-md-8 col-lg-10 order-md-last">
                 <div class="row">
+                    @if (session('barang'))
+                    @foreach (session('barang') as $item)
+                    <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+                        <div class="product d-flex flex-column">
+                            <a href="#" class="img-prod">
+                                <img class="img-fluid" src="/app/images/barang/{{ $item->foto }}"
+                                    alt="{{ $item->nama }}">
+                                @if ($item->diskon > 0)
+                                <span class="status">{{ $item->diskon }}% Off</span>
+                                @endif
+                                <div class="overlay"></div>
+                            </a>
+                            <div class="text py-3 pb-4 px-3 mt-auto">
+                                <div class="d-flex">
+                                    <div class="cat">
+                                        <span>LIFESTYLE</span>
+                                    </div>
+                                    <div class="rating">
+                                        <p class="text-right mb-0">
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <h3><a href="#">{{ $item->nama}}</a></h3>
+                                <div class="pricing">
+                                    <p class="price">
+                                        @if ($item->diskon > 0)
+                                        <span class="mr-2 price-dc">Rp.{{ $item->harga }}</span>
+                                        <span
+                                            class="price-sale">Rp.{{ $item->harga - (($item->diskon / 100) * $item->harga) }}</span>
+                                        @else
+                                        <span>Rp.{{ $item->harga }}</span>
+                                        @endif
+                                    </p>
+                                </div>
+                                <p class="bottom-area d-flex px-3">
+                                    <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                                                class="ion-ios-add ml-1"></i></span></a>
+                                    <a href="#" class="buy-now text-center py-2">Buy now<span><i
+                                                class="ion-ios-cart ml-1"></i></span></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
                     @foreach ($barang as $item)
                     <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
                         <div class="product d-flex flex-column">
@@ -67,6 +117,7 @@
                         </div>
                     </div>
                     @endforeach
+                    @endif
                 </div>
                 {{-- <div class="row mt-5">
                     <div class="col text-center">
@@ -113,19 +164,25 @@
                 </div>
                 <div class="sidebar-box-2">
                     <h2 class="heading">Price Range</h2>
-                    <form method="post" class="colorlib-form-2">
+                    <form method="POST" action="{{ route('shop.post') }}" class="colorlib-form-2">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="guests">Price from:</label>
                                     <div class="form-field">
                                         <i class="icon icon-arrow-down3"></i>
-                                        <select name="people" id="people" class="form-control">
-                                            <option value="100">100</option>
-                                            <option value="500">500</option>
-                                            <option value="1000">1.000</option>
-                                            <option value="5000">5.000</option>
-                                            <option value="10000">10.000</option>
+                                        <select name="from" id="people" class="form-control">
+                                            @foreach ($range as $rg)
+                                            @if ($rg->range<=10000) @if ($rg->range == request()->from)
+                                                @php $select = "selected" @endphp
+                                                @else
+                                                @php $select = "" @endphp
+                                                @endif
+                                                <option {{ $select }} value="{{ $rg->range }}">{{ $rg->range }}
+                                                </option>
+                                                @endif
+                                                @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -135,21 +192,25 @@
                                     <label for="guests">Price to:</label>
                                     <div class="form-field">
                                         <i class="icon icon-arrow-down3"></i>
-                                        <select name="people" id="people" class="form-control">
-                                            <option value="5000">5.000</option>
-                                            <option value="10000">10.000</option>
-                                            <option value="30000">30.000</option>
-                                            <option value="50000">50.000</option>
-                                            <option value="100000">100.000</option>
-                                            <option value="500000">500.000</option>
-                                            <option value="1000000">1.000.000</option>
-                                            <option value="10000000">10.000.000</option>
+                                        <select name="to" id="people" class="form-control">
+                                            @foreach ($range as $rg)
+                                            @if ($rg->range >= 5000)
+                                            @if ($rg->range == request()->to)
+                                            @php $select = "selected" @endphp
+                                            @else
+                                            @php $select = "" @endphp
+                                            @endif
+                                            <option {{ $select }} value="{{ $rg->range }}">{{ $rg->range }}
+                                            </option>
+                                            @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <button style="width: 100%" class="btn btn-primary" type="submit">Set</button>
+                                <button style="width: 100%" name="set" class="btn btn-primary"
+                                    type="submit">Set</button>
                             </div>
                         </div>
                     </form>

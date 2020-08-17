@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home/contact', 'HomeController@contact')->name('contact');
 Route::get('/home/about', 'HomeController@about')->name('about');
 Route::get('/catalog/shop', 'HomeController@shop')->name('shop');
+Route::post('/catalog/shop', 'HomeController@shopPost')->name('shop.post');
 Route::get('/catalog/shop/{id}', 'HomeController@shopId')->name('shop.get');
 
 // admin

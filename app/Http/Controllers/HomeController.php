@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Barang;
 use App\Kategori;
+use App\RangePrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,7 +40,8 @@ class HomeController extends Controller
         $data = [
             'title' => 'Shop',
             'barang' => Barang::all(),
-            'kategori' => Kategori::all()
+            'kategori' => Kategori::all(),
+            'range' => RangePrice::all()
         ];
         return view('user.shop', $data);
     }
@@ -49,7 +51,19 @@ class HomeController extends Controller
         $data = [
             'title' => 'Shop',
             'kategori' => Kategori::all(),
-            'barang' => Barang::where('kd_ktgr', $id)->get()
+            'barang' => Barang::where('kd_ktgr', $id)->get(),
+            'range' => RangePrice::all()
+        ];
+        return view('user.shop', $data);
+    }
+
+    public function shopPost(Request $req)
+    {
+        $data = [
+            'title' => 'Shop',
+            'barang' => Barang::whereBetween('harga', [$req->from, $req->to])->get(),
+            'kategori' => Kategori::all(),
+            'range' => RangePrice::all()
         ];
         return view('user.shop', $data);
     }
