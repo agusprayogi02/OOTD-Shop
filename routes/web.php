@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-
+// guest
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home/contact', 'HomeController@contact')->name('contact');
+Route::get('/home/about', 'HomeController@about')->name('about');
+
+// admin
 Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('is_admin');
+
+// member
 Route::get('/member/home', 'MemberController@index')->name('member.home')->middleware('is_member');
 Route::get('/member/brg/tambah', 'MemberController@tambahBrg')->name('member.addBrg')->middleware('is_member');
 Route::post('/member/brg/storeBrg', 'MemberController@storeBrg')->name('member.storeBrg')->middleware('is_member');

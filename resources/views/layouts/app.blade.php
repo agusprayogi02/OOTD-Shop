@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }}</title>
 
+    @yield('css_berofe')
     <!-- Icons -->
     <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
     <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('media/favicons/favicon-192x192.png') }}">
@@ -34,6 +35,7 @@
     <link rel="stylesheet" href="{{ asset('app/css/flaticon.css')}}">
     <link rel="stylesheet" href="{{ asset('app/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('app/css/style.css')}}">
+    @yield('css_after')
 
 </head>
 
@@ -48,7 +50,7 @@
                                     class="icon-phone2"></span></div>
                             <span class="text">+62 881 7935 154</span>
                         </div>
-                        <div class="col-sm-6 pr-4 d-flex topper align-items-center">
+                        <div class="col-sm-6 pr-4 d-flex topper align-items-center ml-auto">
                             <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
                                     class="icon-paper-plane"></span></div>
                             <span class="text">agus21apy@gmail.com</span>
@@ -60,7 +62,7 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">OOTD-Shop</a>
+            <a class="navbar-brand" href="{{ route('home') }}">OOTD-Shop</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -100,8 +102,8 @@
                             <a class="dropdown-item" href="#">Checkout</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -173,7 +175,7 @@
                             <li><a href="#" class="py-2 d-block">Shop</a></li>
                             <li><a href="#" class="py-2 d-block">About</a></li>
                             <li><a href="#" class="py-2 d-block">Journal</a></li>
-                            <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+                            <li><a href="{{ route('contact') }}" class="py-2 d-block">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -201,7 +203,8 @@
                             <ul>
                                 <li><span class="icon icon-map-marker"></span><span class="text">Wonosari Malang, Jawa
                                         Timur , Indonesia</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+62 881 7935
+                                <li><a href="tel://628817935154"><span class="icon icon-phone"></span><span
+                                            class="text">+62 881 7935
                                             154</span></a></li>
                                 <li><a href="mailto:agus21apy@gmail.com"><span class="icon icon-envelope"></span><span
                                             class="text">agus21apy@gmail.com</span></a></li>
@@ -226,6 +229,7 @@
     </footer>
 
     <!-- loader -->
+    @yield('js_before')
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
@@ -247,6 +251,7 @@
     <script src="{{ asset('app/js/main.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false">
     </script>
+    @yield('js_after')
 </body>
 
 </html>

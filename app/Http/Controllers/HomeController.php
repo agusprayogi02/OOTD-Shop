@@ -16,4 +16,20 @@ class HomeController extends Controller
         ];
         return view('user.welcome', $data);
     }
+
+    public function contact()
+    {
+        $data = [
+            'title' => "Contact Me"
+        ];
+        return view('user.contact', $data);
+    }
+
+    public function about()
+    {
+        $data = [
+            'title' => "About Me"
+        ];
+        return view('user.about', $data);
+    }
 }
