@@ -16,7 +16,7 @@ class UserController extends Controller
         $data = [
             'title' => 'Keranjang Belanja'
         ];
-        view('user.basket', $data);
+        return view('user.basket', $data);
     }
 
     /**
