@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Barang;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,74 +15,142 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Keranjang Belanja'
+            'title' => 'Keranjang Belanja',
         ];
+        $cart = session()->get('cart');
+        if ($cart) {
+            $data['barang'] = $cart;
+        }
         return view('user.basket', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function cartById($id = '')
     {
-        //
+        if ($id == '') {
+            return redirect()->back()->with('error', 'Tidak Ada Kode Barang yang Dimasukkan!!');
+        }
+
+        $brg = Barang::find($id);
+        if (!$brg) {
+            abort(404);
+        }
+
+        $cart = session()->get('cart');
+        if (!$cart) {
+            $hrg = $brg->harga;
+            $cart = [
+                $id => [
+                    'id' => $brg->id,
+                    'nama' => $brg->nama,
+                    'foto' => $brg->foto,
+                    'stok' => $brg->stok,
+                    'jumlah' => 1,
+                    'harga' => $hrg,
+                    'total' => $hrg - ($hrg * ($brg->diskon / 100)),
+                    'diskon' => $hrg * ($brg->diskon / 100),
+                    'subTotal' => $hrg
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('pesan', 'Berhasil Menambahkan Barang!!');
+        }
+
+        if (isset($cart[$id])) {
+            $cart[$id]['jumlah']++;
+            $hrg = $brg->harga;
+            $jum = $cart[$id]['jumlah'];
+            $cart[$id]['total'] = ($hrg - ($hrg  * ($brg->diskon / 100))) * $jum;
+            $cart[$id]['diskon'] = ($hrg  * ($brg->diskon / 100)) * $jum;
+            $cart[$id]['subTotal'] = $hrg * $jum;
+            // $cart = [
+            //     $id => [
+            //         'total' => ($hrg - ($hrg  * ($brg->diskon / 100))) * $jum,
+            //         'diskon' => ($hrg  * ($brg->diskon / 100)) * $jum,
+            //         'subTotal' => $hrg * $jum
+            //     ]
+            // ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('pesan', 'Berhasil Menambahkan Jumlah Barang Barang!!');
+        }
+
+        $hrg = $brg->harga;
+        $cart[$id] = [
+            'id' => $brg->id,
+            'nama' => $brg->nama,
+            'foto' => $brg->foto,
+            'stok' => $brg->stok,
+            'jumlah' => 1,
+            'harga' => $hrg,
+            'total' => $hrg - ($hrg * ($brg->diskon / 100)),
+            'diskon' => $hrg * ($brg->diskon / 100),
+            'subTotal' => $hrg
+        ];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('pesan', 'Berhasil Menambahkan Barang!!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function shopNow($id = '')
     {
-        //
-    }
+        if ($id == '') {
+            return redirect()->route('user.cart')->with('error', 'Tidak Ada Kode Barang yang Dimasukkan!!');
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $brg = Barang::find($id);
+        if (!$brg) {
+            abort(404);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $cart = session()->get('cart');
+        if (!$cart) {
+            $hrg = $brg->harga;
+            $cart = [
+                $id => [
+                    'id' => $brg->id,
+                    'nama' => $brg->nama,
+                    'foto' => $brg->foto,
+                    'stok' => $brg->stok,
+                    'jumlah' => 1,
+                    'harga' => $hrg,
+                    'total' => $hrg - ($hrg * ($brg->diskon / 100)),
+                    'diskon' => $hrg * ($brg->diskon / 100),
+                    'subTotal' => $hrg
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->route('user.cart')->with('pesan', 'Berhasil Menambahkan Barang!!');
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        if (isset($cart[$id])) {
+            $cart[$id]['jumlah']++;
+            $hrg = $brg->harga;
+            $jum = $cart[$id]['jumlah'];
+            $cart[$id]['total'] = ($hrg - ($hrg  * ($brg->diskon / 100))) * $jum;
+            $cart[$id]['diskon'] = ($hrg  * ($brg->diskon / 100)) * $jum;
+            $cart[$id]['subTotal'] = $hrg * $jum;
+            // $cart = [
+            //     $id => [
+            //         'total' => ($hrg - ($hrg  * ($brg->diskon / 100))) * $jum,
+            //         'diskon' => ($hrg  * ($brg->diskon / 100)) * $jum,
+            //         'subTotal' => $hrg * $jum
+            //     ]
+            // ];
+            session()->put('cart', $cart);
+            return redirect()->route('user.cart')->with('pesan', 'Berhasil Menambahkan Jumlah Barang Barang!!');
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $hrg = $brg->harga;
+        $cart[$id] = [
+            'id' => $brg->id,
+            'nama' => $brg->nama,
+            'foto' => $brg->foto,
+            'stok' => $brg->stok,
+            'jumlah' => 1,
+            'harga' => $hrg,
+            'total' => $hrg - ($hrg * ($brg->diskon / 100)),
+            'diskon' => $hrg * ($brg->diskon / 100),
+            'subTotal' => $hrg
+        ];
+        session()->put('cart', $cart);
+        return redirect()->route('user.cart')->with('pesan', 'Berhasil Menambahkan Barang!!');
     }
 }

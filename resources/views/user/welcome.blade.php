@@ -77,15 +77,11 @@
                     <div class="text py-3 pb-4 px-3 mt-auto">
                         <div class="d-flex">
                             <div class="cat">
-                                <span>LIFESTYLE</span>
+                                <span>Stok</span>
                             </div>
                             <div class="rating">
                                 <p class="text-right mb-0">
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                    {{ $item->stok }}
                                 </p>
                             </div>
                         </div>
@@ -102,9 +98,11 @@
                             </p>
                         </div>
                         <p class="bottom-area d-flex px-3">
-                            <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                            <a href="{{ route('user.addCart', ['id'=> $item->kd_brg]) }}"
+                                class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
                                         class="ion-ios-add ml-1"></i></span></a>
-                            <a href="#" class="buy-now text-center py-2">Buy now<span><i
+                            <a href="{{ route('user.addNow', ['id'=> $item->kd_brg]) }}"
+                                class="buy-now text-center py-2">Buy now<span><i
                                         class="ion-ios-cart ml-1"></i></span></a>
                         </p>
                     </div>

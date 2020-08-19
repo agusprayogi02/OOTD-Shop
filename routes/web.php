@@ -25,6 +25,8 @@ Route::get('/catalog/shop/{id}', 'HomeController@shopId')->name('shop.get');
 
 // user
 Route::get('/catalog/basket', 'UserController@index')->name('user.cart')->middleware('is_user');
+Route::get('/cart/shop/{id}', 'UserController@cartById')->name('user.addCart')->middleware('is_user');
+Route::get('/cart/now/{id}', 'UserController@shopNow')->name('user.addNow')->middleware('is_user');
 
 // admin
 Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('is_admin');

@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $data = [
             'title' => 'Home',
-            'barang' => DB::select('select * from barang where MONTH(created_at) = ?', [now()->month])
+            'barang' => DB::select('select * from barang where MONTH(created_at) = ?', [now()->month]),
         ];
         return view('user.welcome', $data);
     }

@@ -24,83 +24,55 @@
                                 <th>&nbsp;</th>
                                 <th>&nbsp;</th>
                                 <th>Product</th>
+                                <th>Diskon</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @if (isset($barang))
+                            @foreach ($barang as $item)
+                            {{-- {{dd($item)}} --}}
                             <tr class="text-center">
                                 <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 
                                 <td class="image-prod">
-                                    <div class="img" style="background-image:url(/app/images/product-3.jpg);"></div>
+                                    <div class="img"
+                                        style="background-image:url(/app/images/barang/{{ $item['foto'] }});">
+                                    </div>
                                 </td>
 
                                 <td class="product-name">
-                                    <h3>Nike Free RN 2019 iD</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
+                                    <h3>{{ $item['nama'] }}</h3>
                                 </td>
-
-                                <td class="price">$4.90</td>
+                                <td>Rp.{{ $item['diskon'] }}</td>
+                                <td class="price">Rp.{{ $item['harga'] }}</td>
 
                                 <td class="quantity">
-                                    <div class="input-group d-flex mb-3">
+                                    <div class="input-group d-flex">
                                         <span class="input-group-btn mr-2">
-                                            <button type="button" class="quantity-left-minus btn" data-type="minus"
-                                                data-field="">
+                                            <a href="" style="background-color: red; color: white"
+                                                class="quantity-left-minus btn" data-type="minus" data-field="">
                                                 <i class="ion-ios-remove"></i>
-                                            </button>
+                                            </a>
                                         </span>
                                         <input type="text" id="quantity" name="quantity"
-                                            class="quantity form-control input-number" value="1" min="1" max="100">
+                                            class="quantity form-control input-number" value="{{ $item['jumlah'] }}"
+                                            min="1" max="100">
                                         <span class="input-group-btn ml-2">
-                                            <button type="button" class="quantity-right-plus btn" data-type="plus"
-                                                data-field="">
+                                            <a href="" style="background-color: green; color: white"
+                                                class="quantity-right-plus btn" data-type="plus" data-field="">
                                                 <i class="ion-ios-add"></i>
-                                            </button>
+                                            </a>
                                         </span>
                                     </div>
                                 </td>
 
-                                <td class="total">$4.90</td>
+                                <td class="total">Rp.{{ $item['total'] }}</td>
                             </tr><!-- END TR-->
-
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(/app/images/product-4.jpg);"></div>
-                                </td>
-
-                                <td class="product-name">
-                                    <h3>Nike Free RN 2019 iD</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$15.70</td>
-
-                                <td class="quantity">
-                                    <div class="input-group d-flex mb-3">
-                                        <span class="input-group-btn mr-2">
-                                            <button type="button" class="quantity-left-minus btn" data-type="minus"
-                                                data-field="">
-                                                <i class="ion-ios-remove"></i>
-                                            </button>
-                                        </span>
-                                        <input type="text" id="quantity" name="quantity"
-                                            class="quantity form-control input-number" value="1" min="1" max="100">
-                                        <span class="input-group-btn ml-2">
-                                            <button type="button" class="quantity-right-plus btn" data-type="plus"
-                                                data-field="">
-                                                <i class="ion-ios-add"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </td>
-
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
