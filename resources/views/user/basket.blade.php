@@ -40,7 +40,9 @@
                             @foreach ($barang as $item => $dt)
                             {{-- {{dd($item)}} --}}
                             <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                                <td class="product-remove"><a
+                                        href="{{ route('user.cart.delete', ['id'=>$item]) }}"><span
+                                            class="ion-ios-close"></span></a></td>
 
                                 <td class="image-prod">
                                     <div class="img"

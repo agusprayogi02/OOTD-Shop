@@ -198,4 +198,24 @@ class UserController extends Controller
             return redirect()->route('user.cart')->with('pesan', 'Berhasil menggurangi Jumlah Barang Barang!!');
         }
     }
+
+    public function deleteCart($id)
+    {
+        if (!$id) {
+            return redirect()->route('user.cart')->with('error', 'Tidak Ada Kode Barang yang Dimasukkan!!');
+        }
+
+        $cart = session()->get('cart');
+
+        if ($cart[$id]) {
+            $carts = [];
+            foreach ($cart as $key => $value) {
+                if ($key != $id) {
+                    $carts[$key] = $value;
+                }
+            };
+            session()->put('cart', $carts);
+        }
+        return redirect()->route('user.cart');
+    }
 }
