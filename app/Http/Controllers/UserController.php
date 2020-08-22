@@ -153,4 +153,49 @@ class UserController extends Controller
         session()->put('cart', $cart);
         return redirect()->route('user.cart')->with('pesan', 'Berhasil Menambahkan Barang!!');
     }
+
+    public function plus($id)
+    {
+        if (!$id) {
+            return redirect()->route('user.cart')->with('error', 'Tidak Ada Kode Barang yang Dimasukkan!!');
+        }
+
+        $brg = Barang::find($id);
+        $cart = session()->get('cart');
+        if (isset($cart[$id])) {
+            $cart[$id]['jumlah']++;
+            $hrg = $brg->harga;
+            $jum = $cart[$id]['jumlah'];
+            $cart[$id]['total'] = ($hrg - ($hrg  * ($brg->diskon / 100))) * $jum;
+            $cart[$id]['diskon'] = ($hrg  * ($brg->diskon / 100)) * $jum;
+            $cart[$id]['subTotal'] = $hrg * $jum;
+            session()->put('cart', $cart);
+            return redirect()->route('user.cart')->with('pesan', 'Berhasil Menambahkan Jumlah Barang Barang!!');
+        }
+    }
+
+    public function minus($id)
+    {
+        if (!$id) {
+            return redirect()->route('user.cart')->with('error', 'Tidak Ada Kode Barang yang Dimasukkan!!');
+        }
+
+        $brg = Barang::find($id);
+        $cart = session()->get('cart');
+
+        if ($cart[$id]['jumlah'] == 1) {
+            return redirect()->route('user.cart');
+        }
+
+        if (isset($cart[$id])) {
+            $cart[$id]['jumlah']--;
+            $hrg = $brg->harga;
+            $jum = $cart[$id]['jumlah'];
+            $cart[$id]['total'] = ($hrg - ($hrg  * ($brg->diskon / 100))) * $jum;
+            $cart[$id]['diskon'] = ($hrg  * ($brg->diskon / 100)) * $jum;
+            $cart[$id]['subTotal'] = $hrg * $jum;
+            session()->put('cart', $cart);
+            return redirect()->route('user.cart')->with('pesan', 'Berhasil menggurangi Jumlah Barang Barang!!');
+        }
+    }
 }

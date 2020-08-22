@@ -18,6 +18,11 @@
         <div class="row">
             <div class="col-md-12 ftco-animate">
                 <div class="cart-list">
+                    @if (session('pesan'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('pesan') }}
+                    </div>
+                    @endif
                     <table class="table">
                         <thead class="thead-primary">
                             <tr class="text-center">
@@ -32,36 +37,38 @@
                         </thead>
                         <tbody>
                             @if (isset($barang))
-                            @foreach ($barang as $item)
+                            @foreach ($barang as $item => $dt)
                             {{-- {{dd($item)}} --}}
                             <tr class="text-center">
                                 <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 
                                 <td class="image-prod">
                                     <div class="img"
-                                        style="background-image:url(/app/images/barang/{{ $item['foto'] }});">
+                                        style="background-image:url(/app/images/barang/{{ $dt['foto'] }});">
                                     </div>
                                 </td>
 
                                 <td class="product-name">
-                                    <h3>{{ $item['nama'] }}</h3>
+                                    <h3>{{ $dt['nama'] }}</h3>
                                 </td>
-                                <td>Rp.{{ $item['diskon'] }}</td>
-                                <td class="price">Rp.{{ $item['harga'] }}</td>
+                                <td>Rp.{{ $dt['diskon'] }}</td>
+                                <td class="price">Rp.{{ $dt['harga'] }}</td>
 
                                 <td class="quantity">
                                     <div class="input-group d-flex">
                                         <span class="input-group-btn mr-2">
-                                            <a href="" style="background-color: red; color: white"
+                                            <a href="{{ route('user.minus', ['id'=>$item]) }}"
+                                                style="background-color: red; color: white"
                                                 class="quantity-left-minus btn" data-type="minus" data-field="">
                                                 <i class="ion-ios-remove"></i>
                                             </a>
                                         </span>
-                                        <input type="text" id="quantity" name="quantity"
-                                            class="quantity form-control input-number" value="{{ $item['jumlah'] }}"
+                                        <input type="text" disabled id="quantity" name="quantity"
+                                            class="quantity form-control input-number" value="{{ $dt['jumlah'] }}"
                                             min="1" max="100">
                                         <span class="input-group-btn ml-2">
-                                            <a href="" style="background-color: green; color: white"
+                                            <a href="{{ route('user.plus', ['id'=>$item]) }}"
+                                                style="background-color: green; color: white"
                                                 class="quantity-right-plus btn" data-type="plus" data-field="">
                                                 <i class="ion-ios-add"></i>
                                             </a>
@@ -69,7 +76,7 @@
                                     </div>
                                 </td>
 
-                                <td class="total">Rp.{{ $item['total'] }}</td>
+                                <td class="total">Rp.{{ $dt['total'] }}</td>
                             </tr><!-- END TR-->
                             @endforeach
                             @endif
@@ -106,43 +113,4 @@
         </div>
     </div>
 </section>
-@endsection
-
-@section('js_after')
-<script>
-    $(document).ready(function(){
-
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-
-		        // If is not undefined
-
-		            $('#quantity').val(quantity + 1);
-
-
-		            // Increment
-
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-
-		        // If is not undefined
-
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-
-		});
-</script>
 @endsection
