@@ -30,6 +30,7 @@ Route::get('/cart/now/{id}', 'UserController@shopNow')->name('user.addNow')->mid
 Route::get('/cart/plus/{id}', 'UserController@plus')->name('user.plus')->middleware('is_user');
 Route::get('/cart/minus/{id}', 'UserController@minus')->name('user.minus')->middleware('is_user');
 Route::get('/cart/delete/{id}', 'UserController@deleteCart')->name('user.cart.delete')->middleware('is_user');
+Route::get('/cart/checkout', 'UserController@CheckOut')->name('user.cart.checkout')->middleware('is_user');
 
 // admin
 Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('is_admin');

@@ -16,6 +16,10 @@ class UserController extends Controller
     {
         $data = [
             'title' => 'Keranjang Belanja',
+            'diskon' => 0,
+            'total' => 0,
+            'subTotal' => 0,
+            'delivery' => 0,
         ];
         $cart = session()->get('cart');
         if ($cart) {
@@ -217,5 +221,21 @@ class UserController extends Controller
             session()->put('cart', $carts);
         }
         return redirect()->route('user.cart');
+    }
+
+    public function CheckOut()
+    {
+        $cart = session()->get('cart');
+        if (!$cart) {
+            return redirect()->route('user.cart')->with('error', 'Tidak Ada Barang yang Dimasukkan!!');
+        }
+        $ttl = 0;
+        $subttl = 0;
+        $diskon = 0;
+        foreach ($cart as $item) {
+            $ttl += $item['total'];
+            $diskon += $item['diskon'];
+            $subttl = $ttl + $diskon;
+        }
     }
 }

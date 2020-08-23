@@ -23,6 +23,11 @@
                         {{ session('pesan') }}
                     </div>
                     @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                    @endif
                     <table class="table">
                         <thead class="thead-primary">
                             <tr class="text-center">
@@ -80,6 +85,11 @@
 
                                 <td class="total">Rp.{{ $dt['total'] }}</td>
                             </tr><!-- END TR-->
+                            @php
+                            $total += $dt['total'];
+                            $diskon += $dt['diskon'];
+                            $subTotal = $total + $diskon;
+                            @endphp
                             @endforeach
                             @endif
                         </tbody>
@@ -92,21 +102,21 @@
                 <div class="cart-total mb-3">
                     <h3>Cart Totals</h3>
                     <p class="d-flex">
-                        <span>Subtotal</span>
-                        <span>$20.60</span>
+                        <span>SubTotal</span>
+                        <span>Rp {{ $subTotal }}</span>
                     </p>
                     <p class="d-flex">
                         <span>Delivery</span>
-                        <span>$0.00</span>
+                        <span>Rp {{ $delivery }}</span>
                     </p>
                     <p class="d-flex">
                         <span>Discount</span>
-                        <span>$3.00</span>
+                        <span>Rp {{ $diskon }}</span>
                     </p>
                     <hr>
                     <p class="d-flex total-price">
                         <span>Total</span>
-                        <span>$17.60</span>
+                        <span>Rp {{ $total }}</span>
                     </p>
                 </div>
                 <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
