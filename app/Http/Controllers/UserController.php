@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
+use App\Historys;
+use App\Pembelian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -229,13 +232,45 @@ class UserController extends Controller
         if (!$cart) {
             return redirect()->route('user.cart')->with('error', 'Tidak Ada Barang yang Dimasukkan!!');
         }
-        $ttl = 0;
-        $subttl = 0;
+        $total = 0;
+        $subtotal = 0;
         $diskon = 0;
-        foreach ($cart as $item) {
-            $ttl += $item['total'];
+        $delivery = 0;
+        $data = array();
+        $kd = "TR" . time() . "KD" . random_int(0, 9999);
+        foreach ($cart as $dt => $item) {
+            $total += $item['total'];
             $diskon += $item['diskon'];
-            $subttl = $ttl + $diskon;
+            $subtotal = $total + $diskon;
+            $data = [
+                'kd_transaksi' => $kd,
+                'kd_brg' => $dt,
+                'jumlah' => $cart[$dt]['jumlah'],
+                'diskon' => $cart[$dt]['diskon'],
+                'total' => $cart[$dt]['total'],
+                'created_at' => now()
+            ];
+            $add = Pembelian::insert($data);
+            if (!$add) {
+                return redirect()->back()->with('error', "Gagal Membeli Barang!!");
+            }
+        }
+        $data = [
+            'kd_transaksi' => $kd,
+            'id' => Auth::user()->id,
+            'subTotal' => $subtotal,
+            'total' => $total,
+            'diskon' => $diskon,
+            'delivery' => $delivery,
+            'status' => '0',
+            'created_at' => now()
+        ];
+        $post = Historys::insert($data);
+        if ($post) {
+            session()->forget('cart');
+            return redirect()->back()->with('pesan', "Berhasil Membeli Barang!!");
+        } else {
+            return redirect()->back()->with('error', "Gagal Membeli Barang!!");
         }
     }
 }

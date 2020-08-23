@@ -119,7 +119,8 @@
                         <span>Rp {{ $total }}</span>
                     </p>
                 </div>
-                <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
+                <p class="text-center"><a href="{{ route('user.cart.checkout') }}"
+                        class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
                 </p>
             </div>
         </div>
