@@ -238,23 +238,7 @@ class UserController extends Controller
         $delivery = 0;
         $data = array();
         $kd = "TR" . time() . "KD" . random_int(0, 9999);
-        foreach ($cart as $dt => $item) {
-            $total += $item['total'];
-            $diskon += $item['diskon'];
-            $subtotal = $total + $diskon;
-            $data = [
-                'kd_transaksi' => $kd,
-                'kd_brg' => $dt,
-                'jumlah' => $cart[$dt]['jumlah'],
-                'diskon' => $cart[$dt]['diskon'],
-                'total' => $cart[$dt]['total'],
-                'created_at' => now()
-            ];
-            $add = Pembelian::insert($data);
-            if (!$add) {
-                return redirect()->back()->with('error', "Gagal Membeli Barang!!");
-            }
-        }
+
         $data = [
             'kd_transaksi' => $kd,
             'id' => Auth::user()->id,
@@ -267,8 +251,37 @@ class UserController extends Controller
         ];
         $post = Historys::insert($data);
         if ($post) {
+            foreach ($cart as $dt => $item) {
+                $total += $item['total'];
+                $diskon += $item['diskon'];
+                $subtotal = $total + $diskon;
+                $data = [
+                    'kd_transaksi' => $kd,
+                    'kd_brg' => $dt,
+                    'jumlah' => $cart[$dt]['jumlah'],
+                    'diskon' => $cart[$dt]['diskon'],
+                    'total' => $cart[$dt]['total'],
+                    'created_at' => now()
+                ];
+                $add = Pembelian::insert($data);
+                if (!$add) {
+                    return redirect()->back()->with('error', "Gagal Membeli Barang!!");
+                } else {
+                    $update = [
+                        'subTotal' => $subtotal,
+                        'total' => $total,
+                        'diskon' => $diskon,
+                        'delivery' => $delivery,
+                        'status' => '0',
+                    ];
+                    Historys::where('kd_transaksi', $kd)->update($update);
+                }
+            }
+        }
+
+        if ($post) {
             session()->forget('cart');
-            return redirect()->back()->with('pesan', "Berhasil Membeli Barang!!");
+            return redirect()->route('user.history')->with('pesan', "Berhasil Membeli Barang!!");
         } else {
             return redirect()->back()->with('error', "Gagal Membeli Barang!!");
         }

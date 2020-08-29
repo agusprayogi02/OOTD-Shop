@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\Apis;
+use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +33,9 @@ Route::get('/cart/plus/{id}', 'UserController@plus')->name('user.plus')->middlew
 Route::get('/cart/minus/{id}', 'UserController@minus')->name('user.minus')->middleware('is_user');
 Route::get('/cart/delete/{id}', 'UserController@deleteCart')->name('user.cart.delete')->middleware('is_user');
 Route::get('/cart/checkout', 'UserController@CheckOut')->name('user.cart.checkout')->middleware('is_user');
+Route::get('/catalog/history', 'HistoryController@index')->name('user.history')->middleware('is_user');
+Route::get('/catalog/history/delete/{id}', 'HistoryController@delete')->name('user.history.delete')->middleware('is_user');
+Route::get('/catalog/history/detail/{kd}', 'HistoryController@detail')->name('user.history.detail')->middleware('is_user');
 
 // admin
 Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('is_admin');
@@ -51,4 +56,11 @@ Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
 Route::match(['get', 'post'], '/dashboard', function () {
     return view('dashboard');
+});
+
+Route::get('api/user', function () {
+    return Apis::collection(User::all());
+});
+Route::get('api/user/{id}', function ($id) {
+    return Apis::collection(User::where('id', $id)->get());
 });

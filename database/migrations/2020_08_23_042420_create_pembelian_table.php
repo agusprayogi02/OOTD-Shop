@@ -22,6 +22,7 @@ class CreatePembelianTable extends Migration
             $table->bigInteger('diskon');
             $table->bigInteger('total');
             $table->timestamps();
+            $table->foreign('kd_transaksi')->references('kd_transaksi')->on('historys');
         });
     }
 

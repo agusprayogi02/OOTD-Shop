@@ -14,16 +14,16 @@ class CreateHistorysTable extends Migration
     public function up()
     {
         Schema::create('historys', function (Blueprint $table) {
-            $table->id('kd_his');
-            $table->string('kd_transaksi', 20);
+            $table->string('kd_transaksi', 20)->primary();
             $table->foreignId('id')->constrained('users');
             $table->bigInteger('subTotal');
             $table->bigInteger('total');
             $table->bigInteger('diskon');
             $table->bigInteger('delivery');
             $table->enum('status', ['0', '1', '2']);
+            $table->enum('user', ['0', '1'])->nullable()->default('1');
+            $table->enum('member', ['0', '1'])->nullable()->default('1');
             $table->timestamps();
-            // $table->foreign('kd_transaksi')->references('kd_transaksi')->on('pembelian');
         });
     }
 

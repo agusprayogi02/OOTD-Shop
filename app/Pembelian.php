@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pembelian extends Model
 {
     protected $table = 'pembelian';
+    public function barang()
+    {
+        return $this->hasOne('App\Barang');
+    }
 }
