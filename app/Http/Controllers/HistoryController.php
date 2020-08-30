@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Historys;
 use App\Pembelian;
+use App\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,10 +49,11 @@ class HistoryController extends Controller
             return redirect()->route('user.history')->with('error', 'Tidak Ada Barang yang Dimasukkan!!');
         }
 
-        // $data = [
-        //     'histori' => Pembelian::where('kd_transaksi', $kd)
-        // ];
-        echo $kd;
-        dd(Pembelian::where('kd_transaksi', $kd)->get());
+        $data = [
+            'histori' => Pembelian::where('kd_transaksi', $kd)->get(),
+            'title' => 'Detail'
+        ];
+
+        return view('user.detailHistory', $data);
     }
 }

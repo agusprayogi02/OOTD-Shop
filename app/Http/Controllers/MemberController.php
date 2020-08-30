@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Barang;
+use App\Historys;
 use App\Kategori;
+use App\Pembelian;
 use Illuminate\Support\Facades\Auth;
 use ImageResize;
 
@@ -174,5 +176,15 @@ class MemberController extends Controller
             'lists' => Kategori::all()
         ];
         return view('member.list_ktgr', $data);
+    }
+
+    public function pesanan()
+    {
+        $data = [
+            'title' => "Member - Pesanan",
+            'pesanan' => Pembelian::where('status', 0)->get()
+        ];
+
+        return view('member.pesanan', $data);
     }
 }

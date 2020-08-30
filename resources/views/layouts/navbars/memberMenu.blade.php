@@ -20,6 +20,12 @@
                 <i class="fa fa-plus-square"></i><span class="sidebar-mini-hide">Tambah Kategori</span>
             </a>
         </li>
+        <li class="nav-main-heading">
+            <span class="sidebar-mini-visible">PM</span><span class="sidebar-mini-hidden">Pemesanan</span>
+        </li>
+        <li>
+            <a href=""><i class="fa fa-cart-plus"></i>Pesanan</a>
+        </li>
     </ul>
 </div>
 <!-- END Side Navigation -->

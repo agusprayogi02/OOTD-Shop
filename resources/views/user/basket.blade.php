@@ -89,6 +89,7 @@
                             $total += $dt['total'];
                             $diskon += $dt['diskon'];
                             $subTotal = $total + $diskon;
+                            session()->put('total', $total);
                             @endphp
                             @endforeach
                             @endif
@@ -101,6 +102,11 @@
             <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
                     <h3>Cart Totals</h3>
+                    <p class="d-flex">
+                        <span>Saldo</span>
+                        <span>Rp {{ Auth::user()->uang }}</span>
+                    </p>
+                    <hr>
                     <p class="d-flex">
                         <span>SubTotal</span>
                         <span>Rp {{ $subTotal }}</span>
@@ -117,6 +123,11 @@
                     <p class="d-flex total-price">
                         <span>Total</span>
                         <span>Rp {{ $total }}</span>
+                    </p>
+                    <hr>
+                    <p class="d-flex">
+                        <span>Sisa Saldo</span>
+                        <span>Rp {{ Auth::user()->uang - $total}}</span>
                     </p>
                 </div>
                 <p class="text-center"><a href="{{ route('user.cart.checkout') }}"

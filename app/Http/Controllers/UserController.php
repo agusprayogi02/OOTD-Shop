@@ -229,8 +229,12 @@ class UserController extends Controller
     public function CheckOut()
     {
         $cart = session()->get('cart');
+        $total = session()->get('total');
         if (!$cart) {
             return redirect()->route('user.cart')->with('error', 'Tidak Ada Barang yang Dimasukkan!!');
+        }
+        if ($total >= Auth::user()->uang) {
+            return redirect()->route('user.cart')->with('error', 'Saldo anda tidak mencukupi untuk membeli barang!!');
         }
         $total = 0;
         $subtotal = 0;

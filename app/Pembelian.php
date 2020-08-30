@@ -9,6 +9,11 @@ class Pembelian extends Model
     protected $table = 'pembelian';
     public function barang()
     {
-        return $this->hasOne('App\Barang');
+        return $this->belongsTo('App\Barang', 'kd_brg');
+    }
+
+    public function histori()
+    {
+        return $this->belongsTo('App\Historys', 'kd_transaksi');
     }
 }
