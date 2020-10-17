@@ -1,11 +1,26 @@
 @extends('layouts.admin')
 
+@section('css_before')
+<!-- Page JS Plugins CSS -->
+<link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
+@endsection
+
+@section('js_after')
+<!-- Page JS Plugins -->
+<script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('js/pages/be_ui_animations.min.js') }}"></script>
+
+<!-- Page JS Code -->
+<script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <div class="content">
     <h2 class="content-heading">{{ $title }}</h2>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-11">
             <!-- Full Table -->
             <div class="block">
                 <div class="block-header block-header-default">
@@ -21,25 +36,32 @@
                         <p class="mb-0">{{ session('pesan') }}</p>
                     </div>
                     @endif
-                    <div class="table-responsive">
-                        <table class="table table-striped table-vcenter">
+                    <div class="table-responsive pb-3">
+                        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                             <thead>
                                 <tr>
                                     <th class="text-center" style="width: 60px;">No.</th>
-                                    <th>Name</th>
-                                    <th style="width: 30%;">Pembuat</th>
+                                    <th>Pembeli</th>
+                                    <th>Produk</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah</th>
+                                    <th>diskon</th>
+                                    <th>total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $id = 1 @endphp
-                                @foreach ($pemesanan as $item)
-                                @if ($item->barang->ready == 0)
+                                @foreach ($pesanan as $item)
                                 <tr>
+                                    {{-- {{dd($item->users->name)}} --}}
                                     <th class="text-center" style="width: 80px;">{{ $id++ }}</th>
-                                    <td>{{ $item->namaK }}</td>
-                                    <td style="width: 30%;">{{ $item->pembuat }}</td>
+                                    <td>{{ $item->users->name }}</td>
+                                    <td>{{ $item->barang->nama }}</td>
+                                    <td>{{ $item->barang->harga }}</td>
+                                    <td>{{ $item->jumlah}}</td>
+                                    <td>{{ $item->diskon }}</td>
+                                    <td>{{ $item->total }}</td>
                                 </tr>
-                                @endif
                                 @endforeach
                             </tbody>
                         </table>

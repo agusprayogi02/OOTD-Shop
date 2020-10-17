@@ -80,7 +80,7 @@
             'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
             'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
         -->
-    <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-boxed">
+    <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-fixed main-content-boxed">
         <!-- Side Overlay-->
         <aside id="side-overlay">
             <!-- Side Header -->
@@ -97,10 +97,11 @@
                     <!-- User Info -->
                     <div class="content-header-item">
                         <a class="img-link mr-5" href="javascript:void(0)">
-                            <img class="img-avatar img-avatar32" src="{{ asset('media/avatars/avatar15.jpg') }}" alt="">
+                            <img class="img-avatar img-avatar32"
+                                src="{{ asset('media/profile/').'/'.Auth::user()->foto }}" alt="">
                         </a>
-                        <a class="align-middle link-effect text-primary-dark font-w600" href="javascript:void(0)">John
-                            Smith</a>
+                        <a class="align-middle link-effect text-primary-dark font-w600"
+                            href="javascript:void(0)">{{ Auth::user()->name }}</a>
                     </div>
                     <!-- END User Info -->
                 </div>
@@ -231,10 +232,10 @@
 
                             <!-- Open Search Section -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                            <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout"
+                            <!-- <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout"
                                 data-action="header_search_on">
                                 <i class="fa fa-search"></i>
-                            </button>
+                            </button> -->
                             <!-- END Open Search Section -->
 
                             <!-- Layout Options (used just for demonstration) -->
@@ -343,7 +344,8 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right min-width-200"
                                     aria-labelledby="page-header-user-dropdown">
-                                    <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
+                                    <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">
+                                        {{ Auth::user()->role }}</h5>
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="si si-user mr-5"></i> Profile
                                     </a>

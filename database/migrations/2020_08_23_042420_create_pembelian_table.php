@@ -14,7 +14,8 @@ class CreatePembelianTable extends Migration
     public function up()
     {
         Schema::create('pembelian', function (Blueprint $table) {
-            $table->id();
+            $table->id('nomor');
+            $table->foreignId('id')->constrained('users');
             $table->string('kd_transaksi', 20);
             $table->string('kd_brg', 20);
             $table->foreign('kd_brg')->references('kd_brg')->on('barang');

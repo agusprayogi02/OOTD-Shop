@@ -24,7 +24,8 @@
             <span class="sidebar-mini-visible">PM</span><span class="sidebar-mini-hidden">Pemesanan</span>
         </li>
         <li>
-            <a href=""><i class="fa fa-cart-plus"></i>Pesanan</a>
+            <a href="{{ route('member.pesanan') }}" class="{{ request()->is('member/pesanan')?'active':'' }}"><i
+                    class="fa fa-cart-plus"></i>Pesanan</a>
         </li>
     </ul>
 </div>

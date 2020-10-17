@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Member;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Barang;
@@ -182,7 +183,7 @@ class MemberController extends Controller
     {
         $data = [
             'title' => "Member - Pesanan",
-            'pesanan' => Pembelian::where('status', 0)->get()
+            'pesanan' => Pembelian::where('ready', '0')->get()
         ];
 
         return view('member.pesanan', $data);

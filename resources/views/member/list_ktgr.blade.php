@@ -1,5 +1,20 @@
 @extends('layouts.admin')
 
+@section('css_before')
+<!-- Page JS Plugins CSS -->
+<link rel="stylesheet" href="{{ asset('js/plugins/datatables/dataTables.bootstrap4.css') }}">
+@endsection
+
+@section('js_after')
+<!-- Page JS Plugins -->
+<script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('js/pages/be_ui_animations.min.js') }}"></script>
+
+<!-- Page JS Code -->
+<script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <div class="content">
@@ -24,8 +39,8 @@
                         <p class="mb-0">{{ session('pesan') }}</p>
                     </div>
                     @endif
-                    <div class="table-responsive">
-                        <table class="table table-striped table-vcenter">
+                    <div class="table-responsive pb-3">
+                        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                             <thead>
                                 <tr>
                                     <th class="text-center" style="width: 60px;">No.</th>

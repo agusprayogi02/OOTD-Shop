@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Barang;
 use App\Historys;
 use App\Pembelian;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -230,6 +232,7 @@ class UserController extends Controller
     {
         $cart = session()->get('cart');
         $total = session()->get('total');
+        $barang = Barang::all();
         if (!$cart) {
             return redirect()->route('user.cart')->with('error', 'Tidak Ada Barang yang Dimasukkan!!');
         }
@@ -253,6 +256,7 @@ class UserController extends Controller
             'status' => '0',
             'created_at' => now()
         ];
+        $uid = Auth::user();
         $post = Historys::insert($data);
         if ($post) {
             foreach ($cart as $dt => $item) {
@@ -261,6 +265,7 @@ class UserController extends Controller
                 $subtotal = $total + $diskon;
                 $data = [
                     'kd_transaksi' => $kd,
+                    'id' => Auth::user()->id,
                     'kd_brg' => $dt,
                     'jumlah' => $cart[$dt]['jumlah'],
                     'diskon' => $cart[$dt]['diskon'],
@@ -278,6 +283,12 @@ class UserController extends Controller
                         'delivery' => $delivery,
                         'status' => '0',
                     ];
+                    $uang = [
+                        'uang' => $uid->uang - $total
+                    ];
+                    $upp = User::where('id', $uid->id)->update($uang);
+                    $stokNow = $barang->find($dt)->stok - $cart[$dt]['jumlah'];
+                    Barang::where('kd_brg', $dt)->update(['stok' => $stokNow]);
                     Historys::where('kd_transaksi', $kd)->update($update);
                 }
             }
