@@ -27,7 +27,6 @@
                                 <th>Delivery</th>
                                 <th>SubTotal</th>
                                 <th>Total</th>
-                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -42,15 +41,6 @@
                                 <td>Rp {{ $item->delivery }}</td>
                                 <td>Rp {{ $item->subTotal }}</td>
                                 <td>Rp {{ $item->total }}</td>
-                                <td>
-                                    @if ($item->status == 0)
-                                    <span class="badge badge-danger">Belum Terkonfirmasi</span>
-                                    @elseif($item->status == 1)
-                                    <span class="badge badge-warning">Dalam Perjalanan</span>
-                                    @else
-                                    <span class="badge badge-success">Diterima</span>
-                                    @endif
-                                </td>
                                 <td class="row">
                                     <a href="{{ route('user.history.detail', ['kd'=>$item->kd_transaksi]) }}"
                                         class="col-5 btn btn-info"><i class="icon-info2"></i> Detail</a>

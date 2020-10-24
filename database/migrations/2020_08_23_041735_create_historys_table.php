@@ -20,7 +20,6 @@ class CreateHistorysTable extends Migration
             $table->bigInteger('total');
             $table->bigInteger('diskon');
             $table->bigInteger('delivery');
-            $table->enum('status', ['0', '1', '2']);
             $table->enum('user', ['0', '1'])->nullable()->default('1');
             $table->enum('member', ['0', '1'])->nullable()->default('1');
             $table->timestamps();

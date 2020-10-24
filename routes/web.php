@@ -4,6 +4,7 @@ use App\Http\Resources\Apis;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::get('/catalog/history/delete/{id}', 'User\HistoryController@delete')->nam
 Route::get('/catalog/history/detail/{kd}', 'User\HistoryController@detail')->name('user.history.detail')->middleware('is_user');
 
 // admin
-Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('is_admin');
+Route::get('/admin/home', 'Admin\AdminController@index')->name('admin.home')->middleware('is_admin');
 
 // member
 Route::get('/member/home', 'Member\MemberController@index')->name('member.home')->middleware('is_member');
@@ -54,6 +55,11 @@ Route::get('/member/ktgr/tambah', 'Member\MemberController@tambahKtgr')->name('m
 Route::post('/member/ktgr/store', 'Member\MemberController@storeKtgr')->name('member.store_ktgr')->middleware('is_member');
 Route::get('/member/ktgr/list', 'Member\MemberController@list_ktgr')->name('member.list_ktgr')->middleware('is_member');
 Route::get('/member/pesanan',  'Member\MemberController@pesanan')->name('member.pesanan')->middleware('is_member');
+
+// profile
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile/edit', 'ProfileController@edit')->name('edit_profile');
+Route::post('/profile/update', 'ProfileController@update')->name('update_profile');
 
 Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');

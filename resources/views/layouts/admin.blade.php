@@ -179,13 +179,13 @@
 
                     <!-- Visible only in normal mode -->
                     <div class="sidebar-mini-hidden-b text-center">
-                        <a class="img-link" href="javascript:void(0)">
+                        <a class="img-link" href="{{ route('profile') }}">
                             <img class="img-avatar" src="{{ asset('media/profile/').'/'.Auth::user()->foto }}" alt="">
                         </a>
                         <ul class="list-inline mt-10">
                             <li class="list-inline-item">
                                 <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase"
-                                    href="javascript:void(0)">{{ Auth::user()->name }}</a>
+                                    href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
                             </li>
                             <li class="list-inline-item">
                                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -346,18 +346,9 @@
                                     aria-labelledby="page-header-user-dropdown">
                                     <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">
                                         {{ Auth::user()->role }}</h5>
-                                    <a class="dropdown-item" href="javascript:void(0)">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
                                         <i class="si si-user mr-5"></i> Profile
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                        href="javascript:void(0)">
-                                        <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
-                                        <span class="badge badge-primary">3</span>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="si si-note mr-5"></i> Invoices
-                                    </a>
-                                    <div class="dropdown-divider"></div>
 
                                     <!-- Toggle Side Overlay -->
                                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->

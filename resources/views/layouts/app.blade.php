@@ -72,7 +72,7 @@
                 <ul class="navbar-nav ml-auto">
                     @if (isset(Auth::user()->role))
                     @if (auth()->user()->role == 'admin')
-                    <li class="nav-item"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.home') }}" class="nav-link">Home</a></li>
                     @else
                     @if (Auth::user()->role == 'member')
                     <li class="nav-item"><a href="{{ route('member.home') }}" class="nav-link">Home</a></li>
