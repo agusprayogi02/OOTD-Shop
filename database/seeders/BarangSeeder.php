@@ -20,7 +20,7 @@ class BarangSeeder extends Seeder
             'id' => '2',
             'kd_ktgr' => '1',
             'nama' => 'Sepatu Kain',
-            'harga' => 2500000,
+            'harga' => 250000,
             'foto' => 'product-1.png',
             'stok' => 100,
             'diskon' => 10,

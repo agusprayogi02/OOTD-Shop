@@ -18,7 +18,7 @@
                                 <p class="mb-4">A small river named Duden flows by their place and supplies it with the
                                     necessary regelialia. It is a paradisematic country.</p>
 
-                                <p><a href="#" class="btn-custom">Discover Now</a></p>
+                                <p><a href="{{ route('shop') }}" class="btn-custom">Discover Now</a></p>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                 <p class="mb-4">A small river named Duden flows by their place and supplies it with the
                                     necessary regelialia. It is a paradisematic country.</p>
 
-                                <p><a href="#" class="btn-custom">Discover Now</a></p>
+                                <p><a href="{{ route('shop') }}" class="btn-custom">Discover Now</a></p>
                             </div>
                         </div>
                     </div>

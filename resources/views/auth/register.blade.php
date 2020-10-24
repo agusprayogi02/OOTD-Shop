@@ -130,7 +130,7 @@
                                     <div class="col-12">
                                         <label for="alamat">Alamat</label>
                                         <textarea class="form-control @error('alamat') is-invalid @enderror"
-                                            name="alamat" id="alamat" rows="5"></textarea>
+                                            name="alamat" id="alamat" rows="5">{{old('alamat')}}</textarea>
                                         @error('alamat')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -143,8 +143,8 @@
                                         <label for="birthdate">Tanggal Lahir</label>
                                         <input type="text"
                                             class="js-flatpickr form-control bg-white @error('birthdate') is-invalid @enderror"
-                                            id="birthdate" name="birthdate" data-alt-input="true"
-                                            data-date-format="Y-m-d" data-alt-format="F j, Y">
+                                            id="birthdate" name="birthdate" value="{{old('birthdate')}}"
+                                            data-alt-input="true" data-date-format="Y-m-d" data-alt-format="F j, Y">
                                         @error('birthdate')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
