@@ -43,6 +43,14 @@ Route::get('/catalog/history/detail/{kd}', 'User\HistoryController@detail')->nam
 
 // admin
 Route::get('/admin/home', 'Admin\AdminController@index')->name('admin.home')->middleware('is_admin');
+Route::get('/admin/list/user', 'Admin\AdminController@list_user')->name('admin.users')->middleware('is_admin');
+Route::get('/admin/list/member', 'Admin\AdminController@list_member')->name('admin.members')->middleware('is_admin');
+Route::get('/admin/list/pesanan', 'Admin\AdminController@list_pesanan')->name('admin.pesanan')->middleware('is_admin');
+Route::get('/admin/list/blockir/{id}', 'Admin\AdminController@blockir')->name('admin.blokir')->middleware('is_admin');
+Route::get('/admin/list/delete/{id}', 'Admin\AdminController@delete')->name('admin.delete')->middleware('is_admin');
+Route::get('/admin/list/actived/{id}', 'Admin\AdminController@actived')->name('admin.actived')->middleware('is_admin');
+Route::get('/admin/uang', 'Admin\AdminController@uang')->name('admin.uang')->middleware('is_admin');
+Route::post('/admin/uang/add', 'Admin\AdminController@add_saldo')->name('admin.add_saldo')->middleware('is_admin');
 
 // member
 Route::get('/member/home', 'Member\MemberController@index')->name('member.home')->middleware('is_member');

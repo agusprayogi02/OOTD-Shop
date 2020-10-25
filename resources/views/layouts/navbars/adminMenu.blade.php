@@ -7,36 +7,33 @@
             </a>
         </li>
         <li class="nav-main-heading">
-            <span class="sidebar-mini-visible">VR</span><span class="sidebar-mini-hidden">Various</span>
+            <span class="sidebar-mini-visible">SR</span><span class="sidebar-mini-hidden">Users</span>
         </li>
-        <li class="{{ request()->is('pages/*') ? ' open' : '' }}">
-            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bulb"></i><span
-                    class="sidebar-mini-hide">Examples</span></a>
+        <li class="{{ request()->is('admin/list/*') ? ' open' : '' }}">
+            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-users"></i><span
+                    class="sidebar-mini-hide">List</span></a>
             <ul>
                 <li>
-                    <a class="{{ request()->is('pages/datatables') ? ' active' : '' }}"
-                        href="/pages/datatables">DataTables</a>
+                    <a class="{{ request()->is('admin/list/user') ? ' active' : '' }}"
+                        href="{{ route('admin.users') }}">Users</a>
                 </li>
                 <li>
-                    <a class="{{ request()->is('pages/slick') ? ' active' : '' }}" href="/pages/slick">Slick Slider</a>
+                    <a class="{{ request()->is('admin/list/member') ? ' active' : '' }}"
+                        href="{{ route('admin.members') }}">Members</a>
                 </li>
                 <li>
-                    <a class="{{ request()->is('pages/blank') ? ' active' : '' }}" href="/pages/blank">Blank</a>
+                    <a class="{{ request()->is('admin/list/pesanan') ? ' active' : '' }}"
+                        href="{{ route('admin.pesanan') }}">Pesanan</a>
                 </li>
             </ul>
         </li>
         <li class="nav-main-heading">
-            <span class="sidebar-mini-visible">MR</span><span class="sidebar-mini-hidden">More</span>
+            <span class="sidebar-mini-visible">UA</span><span class="sidebar-mini-hidden">Uang</span>
         </li>
         <li>
-            <a href="/">
-                <i class="si si-globe"></i><span class="sidebar-mini-hide">Landing</span>
+            <a class="{{ request()->is('admin/uang') ? ' active' : '' }}" href="{{ route('admin.uang') }}">
+                <i class="si si-plus"></i><span class="sidebar-mini-hide">Top Up</span>
             </a>
         </li>
     </ul>
 </div>
-<!-- END Side Navigation -->
-</div>
-<!-- Sidebar Content -->
-</nav>
-<!-- END Sidebar -->

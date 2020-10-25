@@ -39,7 +39,7 @@
       </a>
     </div>
     <div class="col-6 col-xl-3">
-      <a class="block block-link-shadow text-right" href="javascript:void(0)">
+      <a class="block block-link-shadow text-right" href="{{ route('admin.users') }}">
         <div class="block-content block-content-full clearfix">
           <div class="float-left mt-10 d-none d-sm-block">
             <i class="si si-users fa-3x text-body-bg-dark"></i>
@@ -51,7 +51,7 @@
       </a>
     </div>
     <div class="col-6 col-xl-3">
-      <a class="block block-link-shadow text-right" href="javascript:void(0)">
+      <a class="block block-link-shadow text-right" href="{{ route('admin.members') }}">
         <div class="block-content block-content-full clearfix">
           <div class="float-left mt-10 d-none d-sm-block">
             <i class="si si-users fa-3x text-body-bg-dark"></i>

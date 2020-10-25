@@ -20,6 +20,7 @@ class ChangeUsers extends Migration
             $table->date('birthdate')->after('alamat');
             $table->string('foto')->after('birthdate')->nullable()->default('avatar15.jpg');
             $table->enum('role', ['admin', 'member', 'user'])->after('foto')->default('user');
+            $table->enum('status', ['0', '1'])->default('1')->after('warung');
             $table->string('warung', 100)->nullable()->after('role');
         });
     }

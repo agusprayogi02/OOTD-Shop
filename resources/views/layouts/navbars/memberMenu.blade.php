@@ -29,8 +29,3 @@
         </li>
     </ul>
 </div>
-<!-- END Side Navigation -->
-</div>
-<!-- Sidebar Content -->
-</nav>
-<!-- END Sidebar -->
