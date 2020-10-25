@@ -18,8 +18,12 @@
       <!-- Personal -->
       <h1 class="h3 text-white font-w700 mb-10">{{ Auth::user()->name }}</h1>
       <h2 class="h5 text-white-op">
-        {{ Str::ucfirst(Auth::user()->role) }} - <a class="text-primary-light" href="javascript:void(0)">
-          {{ '@'.Auth::user()->warung ?? "Nama Warung" }}</a>
+        {{ Str::ucfirst(Auth::user()->role) }} -
+        @if (Auth::user()->role == 'member' )
+        <a class="text-primary-light" href="javascript:void(0)">{{ " @". Auth::user()->warung ?? "Nama Warung" }}</a>
+        @else
+        <a class="text-primary-light" href="javascript:void(0)"> @Pemilik Usaha</a>
+        @endif
       </h2>
       <!-- END Personal -->
 
@@ -89,6 +93,7 @@
                 @enderror
               </div>
             </div>
+            @if (Auth::user()->role == 'member' )
             <div class="form-group row">
               <div class="col-12">
                 <label for="warung">Nama Toko</label>
@@ -101,6 +106,7 @@
                 @enderror
               </div>
             </div>
+            @endif
             <div class="form-group row">
               <div class="col-12">
                 <label for="jenis">{{ __('Jenis Kelamin') }}</label>

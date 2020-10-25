@@ -61,6 +61,7 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/edit', 'ProfileController@edit')->name('edit_profile');
 Route::post('/profile/update', 'ProfileController@update')->name('update_profile');
 
+// examples
 Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');

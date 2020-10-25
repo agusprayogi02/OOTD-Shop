@@ -253,7 +253,6 @@ class UserController extends Controller
             'total' => $total,
             'diskon' => $diskon,
             'delivery' => $delivery,
-            'status' => '0',
             'created_at' => now()
         ];
         $uid = Auth::user();
@@ -281,7 +280,6 @@ class UserController extends Controller
                         'total' => $total,
                         'diskon' => $diskon,
                         'delivery' => $delivery,
-                        'status' => '0',
                     ];
                     $uang = [
                         'uang' => $uid->uang - $total

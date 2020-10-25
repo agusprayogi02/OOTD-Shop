@@ -81,15 +81,13 @@ class ProfileController extends Controller
     {
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'warung' => ['required', 'string'],
             'jk' => ['required'],
             'alamat' => ['required', 'string', 'max:255'],
             'birthdate' => ['required', 'date'],
         ]);
-
         if ($request->has('foto')) {
             $img = $request->file('foto');
-            $filename = rand(0, 9999) . "." . $img->getClientOriginalExtension();
+            $filename = "IMG" . time() . "." . $img->getClientOriginalExtension();
             ImageResize::make($img->path())->resize(300, 400, function ($constraint) {
                 $constraint->aspectRatio();
             })->save('media/profile/' . $filename);
