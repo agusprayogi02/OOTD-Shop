@@ -83,8 +83,14 @@
             </td>
             <td class="text-center">
               <div class="btn-group">
+                @if ($row->status==='1')
                 <a href="{{ route('admin.blokir', ['id'=>$row->id]) }}" class="btn btn-sm btn-secondary"
                   style="width: 50px; color: orange" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                @else
+                <a href="{{ route('admin.actived', ['id'=>$row->id]) }}" class="btn btn-sm btn-secondary"
+                  style="width: 50px; color: green" data-toggle="tooltip" title="Actived"><i
+                    class="fa fa-unlock"></i></a>
+                @endif
                 <a href="{{ route('admin.delete', ['id'=>$row->id]) }}" class="btn btn-sm btn-secondary"
                   style="width: 50px; color: red" data-toggle="tooltip" title="Delete"><i class="fa fa-times"></i></a>
               </div>

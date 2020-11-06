@@ -27,6 +27,7 @@
                                 <th>SubTotal</th>
                                 <th>Diskon</th>
                                 <th>Total</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -40,6 +41,15 @@
                                 <td>{{$item->jumlah * $item->barang->harga}}</td>
                                 <td>{{$item->barang->harga * $item->barang->diskon /100}}</td>
                                 <td>{{$item->jumlah * $item->barang->harga - ($item->barang->harga * $item->barang->diskon /100)}}
+                                </td>
+                                <td>
+                                    @if ($item->ready == 0)
+                                    <div class="badge badge-info">Belum dikirim</div>
+                                    @elseif($item->ready == 1)
+                                    <div class="badge badge-success">Sudah dikirim</div>
+                                    @else
+                                    <div class="badge badge-danger">Ditolak</div>
+                                    @endif
                                 </td>
                                 <td><a class="btn btn-primary" href="{{ route('user.history') }}"><i
                                             class="icon-backward"> </i> Back</a></td>

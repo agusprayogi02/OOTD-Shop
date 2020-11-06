@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Barang;
-use App\Historys;
 use App\Kategori;
 use App\Pembelian;
 use Illuminate\Support\Facades\Auth;
@@ -183,7 +182,8 @@ class MemberController extends Controller
     {
         $data = [
             'title' => "Member - Pesanan",
-            'pesanan' => Pembelian::where('ready', '0')->get()
+            'pesanan' => Pembelian::where('ready', '0')->get(),
+            'ready' => Pembelian::where('ready', '1')->get()
         ];
 
         return view('member.pesanan', $data);

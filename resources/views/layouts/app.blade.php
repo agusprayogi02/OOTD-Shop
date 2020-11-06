@@ -100,7 +100,8 @@
                                 href="{{ route('shop') }}">Shop</a>
                             <a class="dropdown-item {{ request()->is('catalog/basket')? 'active':'' }}"
                                 href="{{ route('user.cart') }}">Basket</a>
-                            <a class="dropdown-item" href="{{ route('user.history') }}">History</a>
+                            <a class="dropdown-item {{ request()->is('catalog/history')? 'active':'' }}"
+                                href="{{ route('user.history') }}">History</a>
                         </div>
                     </li>
                     <li class="nav-item {{ request()->is('home/about')? 'active':'' }}"><a href="{{ route('about') }}"
