@@ -41,6 +41,7 @@ Route::get('/catalog/history', 'User\HistoryController@index')->name('user.histo
 Route::get('/catalog/history/delete/{id}', 'User\HistoryController@delete')->name('user.history.delete')->middleware('is_user');
 Route::get('/catalog/history/detail/{kd}', 'User\HistoryController@detail')->name('user.history.detail')->middleware('is_user');
 
+
 // admin
 Route::get('/admin/home', 'Admin\AdminController@index')->name('admin.home')->middleware('is_admin');
 Route::get('/admin/list/user', 'Admin\AdminController@list_user')->name('admin.users')->middleware('is_admin');
@@ -63,6 +64,8 @@ Route::get('/member/ktgr/tambah', 'Member\MemberController@tambahKtgr')->name('m
 Route::post('/member/ktgr/store', 'Member\MemberController@storeKtgr')->name('member.store_ktgr')->middleware('is_member');
 Route::get('/member/ktgr/list', 'Member\MemberController@list_ktgr')->name('member.list_ktgr')->middleware('is_member');
 Route::get('/member/pesanan',  'Member\MemberController@pesanan')->name('member.pesanan')->middleware('is_member');
+Route::get('/member/{kd}/kirim', 'Member\MemberController@kirim')->name('member.kirim')->middleware('is_member');
+Route::get('/member/{kd}/tolak', 'Member\MemberController@tolak')->name('member.tolak')->middleware('is_member');
 
 // profile
 Route::get('/profile', 'ProfileController@index')->name('profile');

@@ -281,10 +281,6 @@ class UserController extends Controller
                         'diskon' => $diskon,
                         'delivery' => $delivery,
                     ];
-                    $uang = [
-                        'uang' => $uid->uang - $total
-                    ];
-                    $upp = User::where('id', $uid->id)->update($uang);
                     $stokNow = $barang->find($dt)->stok - $cart[$dt]['jumlah'];
                     Barang::where('kd_brg', $dt)->update(['stok' => $stokNow]);
                     Historys::where('kd_transaksi', $kd)->update($update);

@@ -22,7 +22,7 @@ class CreatePembelianTable extends Migration
             $table->bigInteger('jumlah');
             $table->bigInteger('diskon');
             $table->bigInteger('total');
-            $table->enum('ready', ['0', '1'])->default('0');
+            $table->enum('ready', ['0', '1', '2'])->default('0');
             $table->timestamps();
             $table->foreign('kd_transaksi')->references('kd_transaksi')->on('historys');
         });

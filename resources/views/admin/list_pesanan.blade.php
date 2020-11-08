@@ -33,6 +33,7 @@
             <th>Produk</th>
             <th>total</th>
             <th>Penjual</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +51,15 @@
               {{ $user->name }}
               @endif
               @endforeach
+            </td>
+            <td>
+              @if ($item->ready == 0)
+              <div class="badge badge-warning">Belum dikirim</div>
+              @elseif($item->ready == 1)
+              <div class="badge badge-success">Sudah dikirim</div>
+              @else
+              <div class="badge badge-danger">Ditolak</div>
+              @endif
             </td>
           </tr>
           @endforeach

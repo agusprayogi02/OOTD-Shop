@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Barang;
 use App\Kategori;
 use App\Pembelian;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use ImageResize;
 
@@ -183,9 +184,42 @@ class MemberController extends Controller
         $data = [
             'title' => "Member - Pesanan",
             'pesanan' => Pembelian::where('ready', '0')->get(),
-            'ready' => Pembelian::where('ready', '1')->get()
+            'ready' => Pembelian::where('ready', '!=', '0')->get()
         ];
 
         return view('member.pesanan', $data);
+    }
+
+    public function kirim($kd)
+    {
+        if (!$kd) {
+            return redirect()->back()->with('error', 'Tidak ada kode yang dimasukkan!!');
+        }
+        $pembelian = Pembelian::where('nomor', $kd)->get()[0];
+        if ($pembelian->users->uang <= $pembelian->total) {
+            return redirect()->back()->with('error', 'Saldo User Tidak Mencukupi!!');
+        }
+        $data = ['ready' => '1'];
+        $kirim = Pembelian::where('nomor', $kd)->update($data);
+        if ($kirim) {
+            $bayar = User::where('id', $pembelian->users->id)->update(['uang' => $pembelian->users->uang - $pembelian->total]);
+            if ($bayar) {
+                $member = User::find($pembelian->barang->id);
+                User::where('id', $pembelian->barang->id)->update(['uang' => $member->uang + $pembelian->total]);
+                return redirect()->back()->with('pesan', 'Pesanan Berhasil dikirim!!');
+            }
+        }
+    }
+
+    public function tolak($kd)
+    {
+        if (!$kd) {
+            return redirect()->back()->with('error', 'Tidak ada kode yang dimasukkan!!');
+        }
+        $data = ['ready' => '2'];
+        $tolak = Pembelian::where('nomor', $kd)->update($data);
+        if ($tolak) {
+            return redirect()->back()->with('pesan', 'Pesanan Berhasil ditolak!!');
+        }
     }
 }

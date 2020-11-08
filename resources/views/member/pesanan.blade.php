@@ -19,6 +19,24 @@
 
 <div class="content">
     <h2 class="content-heading">{{ $title }}</h2>
+    @if (session('pesan'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <h3 class="alert-heading font-size-h4 font-w400">Success</h3>
+        <p class="mb-0">{{ session('pesan') }}</p>
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <h3 class="alert-heading font-size-h4 font-w400">Error</h3>
+        <p class="mb-0">{{ session('error') }}</p>
+    </div>
+    @endif
     <div class="row">
         <div class="col-md-11">
             <!-- Full Table -->
@@ -27,15 +45,7 @@
                     <h3 class="block-title">{{ 'Pesanan yang belum Terkonfirmasi' }}</h3>
                 </div>
                 <div class="block-content">
-                    @if (session('pesan'))
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <h3 class="alert-heading font-size-h4 font-w400">Success</h3>
-                        <p class="mb-0">{{ session('pesan') }}</p>
-                    </div>
-                    @endif
+
                     <div class="table-responsive pb-3">
                         <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                             <thead>
@@ -62,8 +72,10 @@
                                     <td>{{ $item->jumlah}}</td>
                                     <td>{{ $item->diskon }}</td>
                                     <td>{{ $item->total }}</td>
-                                    <td><a href="" class="btn btn-sm btn-primary">Kirim</a> |
-                                        <a href="" class="btn btn-sm btn-danger">Tolak</a>
+                                    <td><a href="{{ route('member.kirim', ['kd'=>$item->nomor]) }}"
+                                            class="btn btn-sm btn-primary">Kirim</a> |
+                                        <a href="{{ route('member.tolak', ['kd'=> $item->nomor]) }}"
+                                            class="btn btn-sm btn-danger">Tolak</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -78,15 +90,6 @@
                     <h3 class="block-title">Pesanan Terkonfirmasi</h3>
                 </div>
                 <div class="block-content">
-                    @if (session('pesan'))
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        <h3 class="alert-heading font-size-h4 font-w400">Success</h3>
-                        <p class="mb-0">{{ session('pesan') }}</p>
-                    </div>
-                    @endif
                     <div class="table-responsive pb-3">
                         <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                             <thead>
@@ -113,7 +116,15 @@
                                     <td>{{ $item->jumlah}}</td>
                                     <td>{{ $item->diskon }}</td>
                                     <td>{{ $item->total }}</td>
-                                    <td>{{ $item->ready }}</td>
+                                    <td>
+                                        @if ($item->ready == 0)
+                                        <div class="badge badge-warning">Belum dikirim</div>
+                                        @elseif($item->ready == 1)
+                                        <div class="badge badge-success">Sudah dikirim</div>
+                                        @else
+                                        <div class="badge badge-danger">Ditolak</div>
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
