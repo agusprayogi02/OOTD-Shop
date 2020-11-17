@@ -8,8 +8,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Free Shipping</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <p>free delivery anywhere anytime during business hours.</p>
                     </div>
                 </div>
             </div>
@@ -20,8 +19,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Support Customer</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <p>we can support customers with any time</p>
                     </div>
                 </div>
             </div>
@@ -32,8 +30,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Secure Payments</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <p>We provide a high level of security so you can rest easy.</p>
                     </div>
                 </div>
             </div>

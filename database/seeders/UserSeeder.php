@@ -29,15 +29,16 @@ class UserSeeder extends Seeder
             'created_at' => now()
         ]);
         DB::table('users')->insert([
-            'name' => 'Helna Kurniawati',
-            'email' => 'helnakurniawati@gmail.com',
+            'name' => 'Naswa Aulia Sabila',
+            'email' => 'nsaulia@gmail.com',
             'password' => Hash::make('sayang-1'),
             'uang' => 1000000,
             'JK' => 'P',
-            'alamat' => 'Jl. Kalinyamat, Kec. Kepanjen, Malang, Jawa Timur 65163',
-            'birthdate' => '2003-01-23',
-            'foto' => 'helna.jpg',
+            'alamat' => 'Malang, Jawa Timur',
+            'birthdate' => '2004-05-23',
+            'foto' => 'nswaaulia.jpg',
             'role' => 'member',
+            'warung' => 'NSA Shop',
             'created_at' => now()
         ]);
         DB::table('users')->insert([

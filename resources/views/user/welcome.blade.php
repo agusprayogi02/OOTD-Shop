@@ -113,8 +113,6 @@
     </div>
 </section>
 
-
-
 <section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
     <div class="container">
         <div class="row no-gutters">

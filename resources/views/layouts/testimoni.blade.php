@@ -9,7 +9,7 @@
                         </div>
                         <div class="text">
                             <h3>Free Shipping</h3>
-                            <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                            <p class="mb-0">free delivery anywhere anytime during business hours.</p>
                         </div>
                     </div>
                     <div class="services-2 p-4 d-flex ftco-animate">
@@ -18,7 +18,7 @@
                         </div>
                         <div class="text">
                             <h3>Valuable Gifts</h3>
-                            <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                            <p class="mb-0">We provide many gifts for our loyal customers</p>
                         </div>
                     </div>
                     <div class="services-2 p-4 d-flex ftco-animate">
@@ -27,7 +27,7 @@
                         </div>
                         <div class="text">
                             <h3>Secure Payments</h3>
-                            <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                            <p class="mb-0">We provide a high level of security so you can rest easy</p>
                         </div>
                     </div>
                     <div class="services-2 p-4 d-flex ftco-animate">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="text">
                             <h3>Fast Response</h3>
-                            <p class="mb-0">Separated they live in. A small river named Duden flows</p>
+                            <p class="mb-0">we are very fast response 24 hours</p>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="carousel-testimony owl-carousel">
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(app/images/person_1.jpg)">
+                            <div class="user-img mb-4" style="background-image: url(/app/images/person_1.jpg)">
                                 <span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
                                 </span>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(app/images/person_2.jpg)">
+                            <div class="user-img mb-4" style="background-image: url(/app/images/person_2.jpg)">
                                 <span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
                                 </span>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(app/images/person_3.jpg)">
+                            <div class="user-img mb-4" style="background-image: url(/app/images/person_3.jpg)">
                                 <span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
                                 </span>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(app/images/person_1.jpg)">
+                            <div class="user-img mb-4" style="background-image: url(/app/images/person_1.jpg)">
                                 <span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
                                 </span>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="item">
                         <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(app/images/person_1.jpg)">
+                            <div class="user-img mb-4" style="background-image: url(/app/images/person_1.jpg)">
                                 <span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
                                 </span>
